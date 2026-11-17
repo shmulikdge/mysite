@@ -25,14 +25,15 @@
 <body class="bg-slate-50 text-slate-900 antialiased selection:bg-blue-600 selection:text-white">
 
     <!-- Header / Navbar -->
-    <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200 shadow-sm">
+    <header class="sticky top-0 z-50 bg-white/85 backdrop-blur-md border-b border-slate-200 shadow-sm">
         <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
             <div class="text-xl font-black tracking-wider text-blue-600">SHMULIK <span class="text-slate-900">TECH & WEB</span></div>
             <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
                 <a href="#services" class="hover:text-blue-600 transition-colors">שירותים</a>
                 <a href="#portfolio" class="hover:text-blue-600 transition-colors">תיק עבודות</a>
+                <a href="#articles" class="hover:text-blue-600 transition-colors">מאמרים</a>
                 <a href="#pricing" class="hover:text-blue-600 transition-colors">מחירון</a>
-                <a href="#contact" class="hover:text-blue-600 transition-colors">יצירת קשר</a>
+                <a href="#contact" class="hover:text-blue-600 transition-colors">צור קשר</a>
             </nav>
             <a href="tel:0545800802" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-xl font-bold text-sm transition-all shadow-lg shadow-blue-600/20">
                 דבר איתי
@@ -63,21 +64,20 @@
         </div>
     </section>
 
-    <!-- Portfolio Marquee Section -->
+    <!-- Portfolio Marquee Section ("פס נע") -->
     <section id="portfolio" class="py-20 bg-white border-t border-slate-200 overflow-hidden">
         <div class="max-w-6xl mx-auto px-6 mb-12 text-center space-y-3">
             <h2 class="text-3xl font-black text-slate-900">תיק עבודות נבחר</h2>
             <p class="text-slate-600">הפרויקטים החיים שלי זזים לפניך – אפשר לעבור אליהם בלחיצה אחת או להניח את העכבר כדי לעצור.</p>
         </div>
 
-        <!-- Marquee Track Wrapper -->
         <div class="relative w-full overflow-hidden py-4">
             <div class="absolute top-0 bottom-0 right-0 w-24 bg-gradient-to-l from-white z-10 pointer-events-none"></div>
             <div class="absolute top-0 bottom-0 left-0 w-24 bg-gradient-to-r from-white z-10 pointer-events-none"></div>
 
             <div class="animate-marquee flex gap-6 px-4">
                 
-                <!-- 1: Shabbat Hosting Community -->
+                <!-- 1: Shabbat Hosting -->
                 <div class="w-80 bg-slate-50 border border-slate-200 rounded-3xl p-6 flex flex-col justify-between hover:border-blue-400 hover:shadow-xl transition-all group shrink-0">
                     <div class="space-y-4">
                         <div class="h-40 rounded-2xl bg-gradient-to-br from-amber-100 to-blue-100 border border-slate-200 flex items-center justify-center text-4xl group-hover:scale-105 transition-transform">
@@ -87,9 +87,7 @@
                             <h3 class="text-xl font-bold text-slate-900">קהילת אירוח לשבת</h3>
                             <span class="text-xs bg-amber-100 text-amber-700 px-2.5 py-1 rounded-lg font-semibold">Community</span>
                         </div>
-                        <p class="text-slate-600 text-sm">
-                            פלטפורמה חברתית המחברת בין מארחים ואורחים המעוניינים להציע ולמצוא אירוח לשבת בקלות.
-                        </p>
+                        <p class="text-slate-600 text-sm">פלטפורמה חברתית המחברת בין מארחים ואורחים המעוניינים להציע ולמצוא אירוח לשבת בקלות.</p>
                     </div>
                     <div class="pt-6">
                         <a href="https://our-shabbat-communit-r3rz.bolt.host/" target="_blank" rel="noopener noreferrer" 
@@ -110,9 +108,7 @@
                             <h3 class="text-xl font-bold text-slate-900">Deep Waters</h3>
                             <span class="text-xs bg-cyan-100 text-cyan-700 px-2.5 py-1 rounded-lg font-semibold">Canyoning</span>
                         </div>
-                        <p class="text-slate-600 text-sm">
-                            אתר מקצועי לסיורי קניונינג במונטנגרו הכולל מערכת הזמנות, גלריה ומידע למטיילים בעברית ובאנגלית.
-                        </p>
+                        <p class="text-slate-600 text-sm">אתר מקצועי לסיורי קניונינג במונטנגרו הכולל מערכת הזמנות, גלריה ומידע למטיילים בעברית ובאנגלית.</p>
                     </div>
                     <div class="pt-6">
                         <a href="https://deep-water-media.lovable.app/" target="_blank" rel="noopener noreferrer" 
@@ -123,7 +119,7 @@
                     </div>
                 </div>
 
-                <!-- 3: Pet E-Commerce & Guides Hub -->
+                <!-- 3: Pet E-Commerce -->
                 <div class="w-80 bg-slate-50 border border-slate-200 rounded-3xl p-6 flex flex-col justify-between hover:border-blue-400 hover:shadow-xl transition-all group shrink-0">
                     <div class="space-y-4">
                         <div class="h-40 rounded-2xl bg-gradient-to-br from-indigo-100 to-blue-100 border border-slate-200 flex items-center justify-center text-4xl group-hover:scale-105 transition-transform">
@@ -133,9 +129,7 @@
                             <h3 class="text-xl font-bold text-slate-900">כלבו אונליין לחיות מחמד</h3>
                             <span class="text-xs bg-indigo-100 text-indigo-700 px-2.5 py-1 rounded-lg font-semibold">E-Commerce</span>
                         </div>
-                        <p class="text-slate-600 text-sm">
-                            חנות כלבו דיגיטלית לחיות מחמד הכוללת מאמרים מקצועיים, מדריכים לטיפול ועוד.
-                        </p>
+                        <p class="text-slate-600 text-sm">חנות כלבו דיגיטלית לחיות מחמד הכוללת מאמרים מקצועיים, מדריכים לטיפול ועוד.</p>
                     </div>
                     <div class="pt-6">
                         <a href="https://story-spark-content-hub.lovable.app/" target="_blank" rel="noopener noreferrer" 
@@ -156,9 +150,7 @@
                             <h3 class="text-xl font-bold text-slate-900">Stanko Travel</h3>
                             <span class="text-xs bg-emerald-100 text-emerald-700 px-2.5 py-1 rounded-lg font-semibold">Booking</span>
                         </div>
-                        <p class="text-slate-600 text-sm">
-                            Adventures worth remembering, guided by locals who know every trail. Book memorable experiences in minutes.
-                        </p>
+                        <p class="text-slate-600 text-sm">Adventures worth remembering, guided by locals who know every trail. Book memorable experiences in minutes.</p>
                     </div>
                     <div class="pt-6">
                         <a href="https://activity-booking-story-hub.lovable.app/" target="_blank" rel="noopener noreferrer" 
@@ -170,95 +162,59 @@
                 </div>
 
                 <!-- Duplicate set for seamless infinite loop -->
-                <!-- 1: Shabbat Hosting Community (Duplicate) -->
                 <div class="w-80 bg-slate-50 border border-slate-200 rounded-3xl p-6 flex flex-col justify-between hover:border-blue-400 hover:shadow-xl transition-all group shrink-0">
                     <div class="space-y-4">
-                        <div class="h-40 rounded-2xl bg-gradient-to-br from-amber-100 to-blue-100 border border-slate-200 flex items-center justify-center text-4xl group-hover:scale-105 transition-transform">
-                            🕯️
-                        </div>
+                        <div class="h-40 rounded-2xl bg-gradient-to-br from-amber-100 to-blue-100 border border-slate-200 flex items-center justify-center text-4xl group-hover:scale-105 transition-transform">🕯️</div>
                         <div class="flex items-center justify-between">
                             <h3 class="text-xl font-bold text-slate-900">קהילת אירוח לשבת</h3>
                             <span class="text-xs bg-amber-100 text-amber-700 px-2.5 py-1 rounded-lg font-semibold">Community</span>
                         </div>
-                        <p class="text-slate-600 text-sm">
-                            פלטפורמה חברתית המחברת בין מארחים ואורחים המעוניינים להציע ולמצוא אירוח לשבת בקלות.
-                        </p>
+                        <p class="text-slate-600 text-sm">פלטפורמה חברתית המחברת בין מארחים ואורחים המעוניינים להציע ולמצוא אירוח לשבת בקלות.</p>
                     </div>
                     <div class="pt-6">
-                        <a href="https://our-shabbat-communit-r3rz.bolt.host/" target="_blank" rel="noopener noreferrer" 
-                           class="inline-flex items-center justify-center w-full bg-slate-900 hover:bg-blue-600 text-white py-3 px-4 rounded-xl font-medium text-sm transition-all gap-2 shadow-sm">
-                            <span>צפה באתר החי</span>
-                            <span>↗</span>
-                        </a>
+                        <a href="https://our-shabbat-communit-r3rz.bolt.host/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center w-full bg-slate-900 hover:bg-blue-600 text-white py-3 px-4 rounded-xl font-medium text-sm transition-all gap-2 shadow-sm"><span>צפה באתר החי</span><span>↗</span></a>
                     </div>
                 </div>
 
-                <!-- 2: Deep Waters (Duplicate) -->
                 <div class="w-80 bg-slate-50 border border-slate-200 rounded-3xl p-6 flex flex-col justify-between hover:border-blue-400 hover:shadow-xl transition-all group shrink-0">
                     <div class="space-y-4">
-                        <div class="h-40 rounded-2xl bg-gradient-to-br from-cyan-100 to-blue-100 border border-slate-200 flex items-center justify-center text-4xl group-hover:scale-105 transition-transform">
-                            🌊
-                        </div>
+                        <div class="h-40 rounded-2xl bg-gradient-to-br from-cyan-100 to-blue-100 border border-slate-200 flex items-center justify-center text-4xl group-hover:scale-105 transition-transform">🌊</div>
                         <div class="flex items-center justify-between">
                             <h3 class="text-xl font-bold text-slate-900">Deep Waters</h3>
                             <span class="text-xs bg-cyan-100 text-cyan-700 px-2.5 py-1 rounded-lg font-semibold">Canyoning</span>
                         </div>
-                        <p class="text-slate-600 text-sm">
-                            אתר מקצועי לסיורי קניונינג במונטנגרו הכולל מערכת הזמנות, גלריה ומידע למטיילים בעברית ובאנגלית.
-                        </p>
+                        <p class="text-slate-600 text-sm">אתר מקצועי לסיורי קניונינג במונטנגרו הכולל מערכת הזמנות, גלריה ומידע למטיילים בעברית ובאנגלית.</p>
                     </div>
                     <div class="pt-6">
-                        <a href="https://deep-water-media.lovable.app/" target="_blank" rel="noopener noreferrer" 
-                           class="inline-flex items-center justify-center w-full bg-slate-900 hover:bg-blue-600 text-white py-3 px-4 rounded-xl font-medium text-sm transition-all gap-2 shadow-sm">
-                            <span>צפה באתר החי</span>
-                            <span>↗</span>
-                        </a>
+                        <a href="https://deep-water-media.lovable.app/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center w-full bg-slate-900 hover:bg-blue-600 text-white py-3 px-4 rounded-xl font-medium text-sm transition-all gap-2 shadow-sm"><span>צפה באתר החי</span><span>↗</span></a>
                     </div>
                 </div>
 
-                <!-- 3: Pet E-Commerce (Duplicate) -->
                 <div class="w-80 bg-slate-50 border border-slate-200 rounded-3xl p-6 flex flex-col justify-between hover:border-blue-400 hover:shadow-xl transition-all group shrink-0">
                     <div class="space-y-4">
-                        <div class="h-40 rounded-2xl bg-gradient-to-br from-indigo-100 to-blue-100 border border-slate-200 flex items-center justify-center text-4xl group-hover:scale-105 transition-transform">
-                            🐾
-                        </div>
+                        <div class="h-40 rounded-2xl bg-gradient-to-br from-indigo-100 to-blue-100 border border-slate-200 flex items-center justify-center text-4xl group-hover:scale-105 transition-transform">🐾</div>
                         <div class="flex items-center justify-between">
                             <h3 class="text-xl font-bold text-slate-900">כלבו אונליין לחיות מחמד</h3>
                             <span class="text-xs bg-indigo-100 text-indigo-700 px-2.5 py-1 rounded-lg font-semibold">E-Commerce</span>
                         </div>
-                        <p class="text-slate-600 text-sm">
-                            חנות כלבו דיגיטלית לחיות מחמד הכוללת מאמרים מקצועיים, מדריכים לטיפול ועוד.
-                        </p>
+                        <p class="text-slate-600 text-sm">חנות כלבו דיגיטלית לחיות מחמד הכוללת מאמרים מקצועיים, מדריכים לטיפול ועוד.</p>
                     </div>
                     <div class="pt-6">
-                        <a href="https://story-spark-content-hub.lovable.app/" target="_blank" rel="noopener noreferrer" 
-                           class="inline-flex items-center justify-center w-full bg-slate-900 hover:bg-blue-600 text-white py-3 px-4 rounded-xl font-medium text-sm transition-all gap-2 shadow-sm">
-                            <span>צפה באתר החי</span>
-                            <span>↗</span>
-                        </a>
+                        <a href="https://story-spark-content-hub.lovable.app/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center w-full bg-slate-900 hover:bg-blue-600 text-white py-3 px-4 rounded-xl font-medium text-sm transition-all gap-2 shadow-sm"><span>צפה באתר החי</span><span>↗</span></a>
                     </div>
                 </div>
 
-                <!-- 4: Stanko Travel (Duplicate) -->
                 <div class="w-80 bg-slate-50 border border-slate-200 rounded-3xl p-6 flex flex-col justify-between hover:border-blue-400 hover:shadow-xl transition-all group shrink-0">
                     <div class="space-y-4">
-                        <div class="h-40 rounded-2xl bg-gradient-to-br from-emerald-100 to-blue-100 border border-slate-200 flex items-center justify-center text-4xl group-hover:scale-105 transition-transform">
-                            ⛰️
-                        </div>
+                        <div class="h-40 rounded-2xl bg-gradient-to-br from-emerald-100 to-blue-100 border border-slate-200 flex items-center justify-center text-4xl group-hover:scale-105 transition-transform">⛰️</div>
                         <div class="flex items-center justify-between">
                             <h3 class="text-xl font-bold text-slate-900">Stanko Travel</h3>
                             <span class="text-xs bg-emerald-100 text-emerald-700 px-2.5 py-1 rounded-lg font-semibold">Booking</span>
                         </div>
-                        <p class="text-slate-600 text-sm">
-                            Adventures worth remembering, guided by locals who know every trail. Book memorable experiences in minutes.
-                        </p>
+                        <p class="text-slate-600 text-sm">Adventures worth remembering, guided by locals who know every trail. Book memorable experiences in minutes.</p>
                     </div>
                     <div class="pt-6">
-                        <a href="https://activity-booking-story-hub.lovable.app/" target="_blank" rel="noopener noreferrer" 
-                           class="inline-flex items-center justify-center w-full bg-slate-900 hover:bg-blue-600 text-white py-3 px-4 rounded-xl font-medium text-sm transition-all gap-2 shadow-sm">
-                            <span>צפה באתר החי</span>
-                            <span>↗</span>
-                        </a>
+                        <a href="https://activity-booking-story-hub.lovable.app/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center w-full bg-slate-900 hover:bg-blue-600 text-white py-3 px-4 rounded-xl font-medium text-sm transition-all gap-2 shadow-sm"><span>צפה באתר החי</span><span>↗</span></a>
                     </div>
                 </div>
 
@@ -273,34 +229,25 @@
             <p class="text-slate-600 max-w-xl mx-auto">סדר בראש בלי הסברים מיותרים – פתרונות ממוקדים שמתאימים בדיוק לעסק שלך.</p>
         </div>
 
-        <!-- What we build (Simple explanation) -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-2">
                 <div class="text-2xl">📄</div>
                 <h3 class="text-lg font-bold text-slate-900">מה זה דף נחיתה?</h3>
-                <p class="text-slate-600 text-sm leading-relaxed">
-                    עמוד אחד ממוקד שנועד לגרום למי שמגיע מפרסומת להשאיר פרטים או להתקשר מיד. מושלם לקמפיינים והשקות.
-                </p>
+                <p class="text-slate-600 text-sm leading-relaxed">עמוד אחד ממוקד שנועד לגרום למי שמגיע מפרסומת להשאיר פרטים או להתקשר מיד. מושלם לקמפיינים והשקות.</p>
             </div>
             <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-2">
                 <div class="text-2xl">🌐</div>
                 <h3 class="text-lg font-bold text-slate-900">מה זה אתר תדמית?</h3>
-                <p class="text-slate-600 text-sm leading-relaxed">
-                    הבית הדיגיטלי של העסק שלך (כמה עמודים) שנותן ללקוחות תמונה מלאה, מקצועית ומכובדת עליך ועל השירותים שלך.
-                </p>
+                <p class="text-slate-600 text-sm leading-relaxed">הבית הדיגיטלי של העסק שלך (כמה עמודים) שנותן ללקוחות תמונה מלאה, מקצועית ומכובדת עליך ועל השירותים שלך.</p>
             </div>
             <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-2">
                 <div class="text-2xl">🛍️</div>
                 <h3 class="text-lg font-bold text-slate-900">מה זה אתר מכירות?</h3>
-                <p class="text-slate-600 text-sm leading-relaxed">
-                    חנות אונליין מלאה שבה אפשר להציג מוצרים, לנהל קטלוג, לאפשר לעגלות קניות להיסגר ולחבר סליקת אשראי מאובטחת.
-                </p>
+                <p class="text-slate-600 text-sm leading-relaxed">חנות אונליין מלאה שבה אפשר להציג מוצרים, לנהל קטלוג, לאפשר לעגלות קניות להיסגר ולחבר סליקת אשראי מאובטחת.</p>
             </div>
         </div>
 
-        <!-- Pricing Cards Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            
             <!-- Card 1: Landing Page -->
             <div class="bg-white border border-slate-200 rounded-3xl p-6 flex flex-col justify-between shadow-sm hover:shadow-md transition-all">
                 <div class="space-y-3">
@@ -313,9 +260,7 @@
                     </div>
                 </div>
                 <div class="pt-6">
-                    <a href="#contact" class="block text-center w-full bg-slate-900 hover:bg-blue-600 text-white py-2.5 rounded-xl font-bold text-sm transition-all shadow-sm">
-                        בחר מסלול
-                    </a>
+                    <a href="#contact" class="block text-center w-full bg-slate-900 hover:bg-blue-600 text-white py-2.5 rounded-xl font-bold text-sm transition-all shadow-sm">בחר מסלול</a>
                 </div>
             </div>
 
@@ -332,13 +277,11 @@
                     </div>
                 </div>
                 <div class="pt-6 relative z-10">
-                    <a href="#contact" class="block text-center w-full bg-blue-600 hover:bg-blue-500 text-white py-2.5 rounded-xl font-bold text-sm transition-all shadow-lg shadow-blue-600/30">
-                        בחר מסלול
-                    </a>
+                    <a href="#contact" class="block text-center w-full bg-blue-600 hover:bg-blue-500 text-white py-2.5 rounded-xl font-bold text-sm transition-all shadow-lg shadow-blue-600/30">בחר מסלול</a>
                 </div>
             </div>
 
-            <!-- Card 3: E-Commerce Store -->
+            <!-- Card 3: E-Commerce -->
             <div class="bg-white border border-slate-200 rounded-3xl p-6 flex flex-col justify-between shadow-sm hover:shadow-md transition-all">
                 <div class="space-y-3">
                     <span class="text-xs bg-purple-50 text-purple-600 px-3 py-1 rounded-full font-semibold border border-purple-100">למכור באינטרנט</span>
@@ -350,9 +293,7 @@
                     </div>
                 </div>
                 <div class="pt-6">
-                    <a href="#contact" class="block text-center w-full bg-slate-900 hover:bg-blue-600 text-white py-2.5 rounded-xl font-bold text-sm transition-all shadow-sm">
-                        בחר מסלול
-                    </a>
+                    <a href="#contact" class="block text-center w-full bg-slate-900 hover:bg-blue-600 text-white py-2.5 rounded-xl font-bold text-sm transition-all shadow-sm">בחר מסלול</a>
                 </div>
             </div>
 
@@ -368,43 +309,63 @@
                     </div>
                 </div>
                 <div class="pt-6">
-                    <a href="#contact" class="block text-center w-full bg-slate-900 hover:bg-blue-600 text-white py-2.5 rounded-xl font-bold text-sm transition-all shadow-sm">
-                        בחר מסלול
-                    </a>
-                </div>
-            </div>
-
-        </div>
-
-        <!-- Infrastructure & FAQs Note -->
-        <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm space-y-4">
-            <h4 class="font-bold text-slate-900 text-lg">שאלות נפוצות בקצרה (בלי כאב ראש):</h4>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-slate-600">
-                <div>
-                    <strong class="text-slate-900 block mb-1">מה עם דומיין ואחסון?</strong>
-                    דומיין (כתובת האתר) הוא בעלות קטנה של כמה עשרות שקלים בשנה שנרשמת ישירות על שמך. לגבי אחסון – האתרים יושבים על תשתית מתקדמת שחוסכת לך לחלוטין את עלויות השרת החודשיות!
-                </div>
-                <div>
-                    <strong class="text-slate-900 block mb-1">איך מתחילים?</strong>
-                    שיחת אפיון קצרה שבה נבין מה העסק שלך צריך, בוחרים מסלול, ויוצאים לדרך בקלות ובמהירות.
+                    <a href="#contact" class="block text-center w-full bg-slate-900 hover:bg-blue-600 text-white py-2.5 rounded-xl font-bold text-sm transition-all shadow-sm">בחר מסלול</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 px-6 max-w-4xl mx-auto text-center space-y-8 bg-slate-100/50 rounded-3xl border border-slate-200/60 mb-20">
-        <div class="space-y-3">
-            <h2 class="text-3xl font-black text-slate-900">רוצה אתר או אפליקציה שיראו ויעבדו מדהים?</h2>
-            <p class="text-slate-600">צור איתי קשר ישירות בטלפון או במייל ונצא לדרך.</p>
+    <!-- Articles / Tips Section -->
+    <section id="articles" class="py-20 px-6 max-w-6xl mx-auto space-y-12">
+        <div class="text-center space-y-3">
+            <h2 class="text-3xl font-black text-slate-900">מאמרים וטיפים מקצועיים</h2>
+            <p class="text-slate-600 max-w-xl mx-auto">כל מה שצריך לדעת כדי לבחור נכון את הצעד הבא של העסק שלך ברשת.</p>
         </div>
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a href="tel:0545800802" class="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-2xl font-bold transition-all shadow-xl shadow-blue-600/25 flex items-center justify-center gap-2">
-                <span>📞 054-5800802</span>
-            </a>
-            <a href="mailto:shmulikdge@gmail.com" class="w-full sm:w-auto bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 px-8 py-4 rounded-2xl font-bold transition-all shadow-sm flex items-center justify-center gap-2">
-                <span>✉️ shmulikdge@gmail.com</span>
-            </a>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm space-y-4 hover:border-blue-300 transition-all">
+                <div class="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center text-xl font-bold">💡</div>
+                <h3 class="text-xl font-bold text-slate-900">איך לבחור פלטפורמה נכונה לעסק?</h3>
+                <p class="text-slate-600 text-sm leading-relaxed">איך מבדילים בין דף נחיתה מהיר שנועד להביא לידייף לבין חנות אונליין גדולה, ומה מתאים לתקציב שלך.</p>
+            </div>
+            <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm space-y-4 hover:border-blue-300 transition-all">
+                <div class="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center text-xl font-bold">⚡</div>
+                <h3 class="text-xl font-bold text-slate-900">למה אתר מהיר שווה יותר לקוחות?</h3>
+                <p class="text-slate-600 text-sm leading-relaxed">מהירות טעינה היא לא רק עניין טכני – גולשים נוטשים אתרים איטיים תוך שניות בודדות. הנה איך אנחנו פותרים את זה.</p>
+            </div>
+            <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm space-y-4 hover:border-blue-300 transition-all">
+                <div class="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center text-xl font-bold">🎯</div>
+                <h3 class="text-xl font-bold text-slate-900">קידום ממומן מול אורגני</h3>
+                <p class="text-slate-600 text-sm leading-relaxed">מתי כדאי להשקיע בקמפיין ממומן בגוגל כדי לייצר לידים מיידיים, ומתי נכון לבנות תשתית לטווח הארוך.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section id="contact" class="py-20 px-6 max-w-3xl mx-auto">
+        <div class="bg-white p-8 md:p-12 rounded-3xl border border-slate-200 shadow-sm space-y-6">
+            <div class="space-y-2 text-center">
+                <h3 class="text-3xl font-black text-slate-900">צור קשר מהיר</h3>
+                <p class="text-slate-600 text-sm">מלא את הפרטים שלך ואחזור אליך בהקדם למייל <span class="font-bold text-slate-900">shmulikdge@gmail.com</span></p>
+            </div>
+            
+            <form action="https://formspree.io/f/shmulikdge" method="POST" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-bold text-slate-700 mb-1">שם מלא</label>
+                    <input type="text" name="name" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-blue-600 focus:outline-none text-sm bg-slate-50" placeholder="השם שלך">
+                </div>
+                <div>
+                    <label class="block text-sm font-bold text-slate-700 mb-1">טלפון</label>
+                    <input type="tel" name="phone" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-blue-600 focus:outline-none text-sm bg-slate-50" placeholder="050-0000000">
+                </div>
+                <div>
+                    <label class="block text-sm font-bold text-slate-700 mb-1">תוכן ההודעה / איזה שירות מעניין אותך?</label>
+                    <textarea name="message" rows="4" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-blue-600 focus:outline-none text-sm bg-slate-50" placeholder="ספר בקצרה על העסק שלך..."></textarea>
+                </div>
+                <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3.5 rounded-xl font-bold text-sm transition-all shadow-lg shadow-blue-600/20">
+                    שלח אל שמוליק 🚀
+                </button>
+            </form>
         </div>
     </section>
 
