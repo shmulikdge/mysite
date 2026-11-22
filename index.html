@@ -13,383 +13,1581 @@
     <meta property="og:site_name" content="SD Creative">
     <meta name="theme-color" content="#fafaf9">
 
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700;900&family=Heebo:wght@300;400;500;600;700;800;900&family=Rubik:wght@600;700;800;900&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        charcoal: '#0F1115',
+                        graphite: '#181B22',
+                        graphiteLight: '#222630',
+                        copper: '#D97736',
+                        copperHover: '#E58A4A',
+                        emeraldMuted: '#2A9D8F',
+                        creamWhite: '#F4F4F6',
+                        silverMuted: '#A1A8B8'
+                    },
+                    fontFamily: {
+                        display: ['"Rubik"', 'sans-serif'],
+                        body: ['"Heebo"', 'sans-serif'],
+                        serifHe: ['"Frank Ruhl Libre"', 'serif'],
+                    },
+                    boxShadow: {
+                        'copper-glow': '0 12px 32px -6px rgba(217, 119, 54, 0.32)',
+                        'card-dark': '0 16px 36px -8px rgba(0, 0, 0, 0.55)',
+                    }
+                }
+            }
+        }
+    </script>
 
     <style>
         body { font-family: 'Heebo', sans-serif; }
-        @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+        .font-serif-he { font-family: 'Frank Ruhl Libre', serif; }
+
+        @keyframes marqueeLoop {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-50%, 0, 0); }
         }
-        .animate-marquee {
+
+        .marquee-wrapper {
+            direction: ltr;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .marquee-track {
             display: flex;
             width: max-content;
-            animation: marquee 45s linear infinite;
+            animation: marqueeLoop 38s linear infinite;
+            will-change: transform;
         }
-        .animate-marquee:hover {
+
+        .marquee-track-slow {
+            display: flex;
+            width: max-content;
+            animation: marqueeLoop 44s linear infinite;
+            will-change: transform;
+        }
+
+        .marquee-wrapper:hover .marquee-track,
+        .marquee-wrapper:hover .marquee-track-slow {
             animation-play-state: paused;
         }
+
+        .ikat-divider {
+            height: 6px;
+            background: repeating-linear-gradient(
+                90deg,
+                #B84A27 0px,
+                #B84A27 16px,
+                #D99B26 16px,
+                #D99B26 32px,
+                #3E5C3A 32px,
+                #3E5C3A 48px,
+                #2C1E16 48px,
+                #2C1E16 54px
+            );
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease-out, opacity 0.25s ease;
+            opacity: 0;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 260px;
+            opacity: 1;
+        }
+
+        .faq-item.active .faq-chevron {
+            transform: rotate(180deg);
+        }
+
+        .urban-grid-bg {
+            background-color: #0F1115;
+            background-image:
+                linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        @keyframes barberSpin {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-28px); }
+        }
+        .barber-pole-stripes {
+            animation: barberSpin 2.4s linear infinite;
+        }
+
+        @keyframes noteFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.75; }
+            50% { transform: translateY(-6px) rotate(6deg); opacity: 1; }
+        }
+        .music-note-1 { animation: noteFloat 2.8s ease-in-out infinite; }
+        .music-note-2 { animation: noteFloat 3.3s ease-in-out 0.9s infinite; }
     </style>
 </head>
-<body class="bg-stone-50 text-stone-800 antialiased selection:bg-emerald-600 selection:text-white">
+<body class="bg-stone-50 text-stone-800 antialiased selection:bg-emerald-600 selection:text-white overflow-x-hidden">
 
-    <!-- Header / Navbar -->
-    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-stone-200 shadow-sm">
-        <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
-            <a href="#top" class="text-xl font-black tracking-wider text-emerald-700">SD <span class="text-stone-900">CREATIVE</span></a>
-            <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-stone-700">
-                <a href="#services" class="hover:text-emerald-700 transition-colors">שירותים</a>
-                <a href="#portfolio" class="hover:text-emerald-700 transition-colors">תיק עבודות</a>
-                <a href="books-landing.html" class="hover:text-emerald-700 transition-colors">דף נחיתה – ספרים</a>
-                <a href="#pricing" class="hover:text-emerald-700 transition-colors">מחירון</a>
-                <a href="#contact" class="hover:text-emerald-700 transition-colors">צור קשר</a>
-            </nav>
-            <div class="flex items-center gap-4">
-                <a href="tel:+972545800802" class="hidden sm:flex items-center gap-2 text-sm font-bold text-stone-700 hover:text-emerald-700" dir="ltr">
-                    <span>054-5800802 📞</span>
-                </a>
-                <a href="#contact" class="bg-emerald-600 hover:bg-emerald-500 text-white px-5 py-2.5 rounded-xl font-bold text-sm transition-all shadow-sm">
-                    צור קשר
-                </a>
-            </div>
-        </div>
-    </header>
-
-    <main id="top">
-        <!-- Hero Section -->
-        <section class="relative py-24 px-6 overflow-hidden bg-gradient-to-b from-white to-stone-100 text-center border-b border-stone-200">
-            <div class="max-w-4xl mx-auto space-y-6 relative z-10">
-                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm font-medium">
-                    ⚡ פיתוח אתרים, מערכות חכמות ופתרונות טכנולוגיים מתקדמים לעסקים
-                </div>
-                <h1 class="text-4xl md:text-6xl font-black tracking-tight leading-tight text-stone-900">
-                    הופך את החזון הדיגיטלי שלך <br>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-700 to-teal-600">למציאות שעובדת בשבילך</span>
-                </h1>
-                <p class="text-lg text-stone-600 max-w-2xl mx-auto font-normal">
-                    שמואל דזבינסקי (SD Creative) – בניית אתרי בוטיק, דפי נחיתה אינטראקטיביים ומערכות מותאמות אישית לעסקים שרוצים לבלוט, לרוץ מהר ולמכור יותר.
-                </p>
-                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-                    <a href="#portfolio" class="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-500 text-white px-8 py-4 rounded-2xl font-bold transition-all shadow-sm text-center">
-                        לתיק העבודות שלי
+    <!-- ==================== VIEW 1: SD CREATIVE MAIN SITE ==================== -->
+    <div id="view-main">
+        <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-stone-200 shadow-sm">
+            <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+                <a href="#top" class="text-xl font-black tracking-wider text-emerald-700">SD <span class="text-stone-900">CREATIVE</span></a>
+                <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-stone-700">
+                    <a href="#services" class="hover:text-emerald-700 transition-colors">שירותים</a>
+                    <a href="#portfolio" class="hover:text-emerald-700 transition-colors">תיק עבודות</a>
+                    <a href="#landing-pages" class="hover:text-emerald-700 transition-colors">דפי נחיתה</a>
+                    <a href="#pricing" class="hover:text-emerald-700 transition-colors">מחירון</a>
+                    <a href="#contact" class="hover:text-emerald-700 transition-colors">צור קשר</a>
+                </nav>
+                <div class="flex items-center gap-4">
+                    <a href="tel:+972545800802" class="hidden sm:flex items-center gap-2 text-sm font-bold text-stone-700 hover:text-emerald-700" dir="ltr">
+                        <span>054-5800802 📞</span>
                     </a>
-                    <a href="#contact" class="w-full sm:w-auto bg-white hover:bg-stone-50 text-stone-900 border border-stone-300 px-8 py-4 rounded-2xl font-bold transition-all shadow-sm text-center">
+                    <a href="#contact" class="bg-emerald-600 hover:bg-emerald-500 text-white px-5 py-2.5 rounded-xl font-bold text-sm transition-all shadow-sm">
                         צור קשר
                     </a>
                 </div>
             </div>
-        </section>
+        </header>
 
-        <!-- Portfolio Marquee Section -->
-        <section id="portfolio" class="py-24 bg-white border-b border-stone-200 overflow-hidden">
-            <div class="max-w-6xl mx-auto px-6 mb-12 text-center space-y-3">
-                <h2 class="text-3xl font-black text-stone-900">תיק עבודות ופרויקטים חיים</h2>
-                <p class="text-stone-600">האתרים והמערכות שבניתי – לחץ על כרטיס כדי לצפות באתר החי.</p>
-            </div>
-
-            <div class="relative w-full overflow-hidden py-4">
-                <div class="absolute top-0 bottom-0 right-0 w-24 bg-gradient-to-l from-white z-10 pointer-events-none"></div>
-                <div class="absolute top-0 bottom-0 left-0 w-24 bg-gradient-to-r from-white z-10 pointer-events-none"></div>
-
-                <div class="animate-marquee flex gap-8 px-4">
-
-                    <!-- 1: Shabbat Hosting -->
-                    <div class="w-[440px] bg-stone-50 border border-stone-200 rounded-3xl overflow-hidden flex flex-col justify-between hover:border-emerald-600 hover:shadow-md transition-all group shrink-0">
-                        <div class="bg-white px-4 py-3 border-b border-stone-200 flex items-center justify-between">
-                            <div class="flex items-center gap-2">
-                                <div class="w-3 h-3 rounded-full bg-red-400"></div>
-                                <div class="w-3 h-3 rounded-full bg-amber-400"></div>
-                                <div class="w-3 h-3 rounded-full bg-emerald-500"></div>
-                            </div>
-                            <div class="bg-stone-100 px-4 py-1 rounded-md text-xs text-stone-600 border border-stone-200 font-mono">our-shabbat-community</div>
-                            <span class="text-xs bg-amber-50 text-amber-800 border border-amber-200 px-2.5 py-0.5 rounded-md font-semibold">Community</span>
-                        </div>
-
-                        <div class="h-44 bg-gradient-to-br from-amber-100 via-stone-50 to-white border-b border-stone-200 p-6 flex flex-col justify-between">
-                            <div class="flex items-center justify-between">
-                                <span class="text-xs bg-amber-100 text-amber-900 px-3 py-1 rounded-lg border border-amber-200 font-bold">פלטפורמת אירוח</span>
-                                <span class="text-xs text-stone-500 font-mono">Live Demo ↗</span>
-                            </div>
-                            <div>
-                                <h3 class="text-2xl font-black text-stone-900">קהילת אירוח לשבת</h3>
-                                <p class="text-xs text-stone-600 mt-1">חיבור חכם בין מארחים לאורחים לשבתות</p>
-                            </div>
-                        </div>
-
-                        <div class="p-6 space-y-4 flex-1 flex flex-col justify-between">
-                            <p class="text-stone-700 text-sm leading-relaxed">פלטפורמה חברתית מושקעת המאפשרת תיאום אירוח קהילתי ומציאת מקומות אירוח לשבת בקלות ובמהירות.</p>
-                            <a href="https://our-shabbat-communit-r3rz.bolt.host/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center w-full bg-white hover:bg-emerald-600 hover:text-white text-stone-900 py-3.5 px-4 rounded-xl font-bold text-sm transition-all gap-2 border border-stone-300">
-                                <span>צפה באתר החי</span><span>↗</span>
-                            </a>
-                        </div>
+        <main id="top">
+            <section class="relative py-24 px-6 overflow-hidden bg-gradient-to-b from-white to-stone-100 text-center border-b border-stone-200">
+                <div class="max-w-4xl mx-auto space-y-6 relative z-10">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm font-medium">
+                        ⚡ פיתוח אתרים, מערכות חכמות ופתרונות טכנולוגיים מתקדמים לעסקים
                     </div>
-
-                    <!-- 2: Deep Waters -->
-                    <div class="w-[440px] bg-stone-50 border border-stone-200 rounded-3xl overflow-hidden flex flex-col justify-between hover:border-emerald-600 hover:shadow-md transition-all group shrink-0">
-                        <div class="bg-white px-4 py-3 border-b border-stone-200 flex items-center justify-between">
-                            <div class="flex items-center gap-2">
-                                <div class="w-3 h-3 rounded-full bg-red-400"></div>
-                                <div class="w-3 h-3 rounded-full bg-amber-400"></div>
-                                <div class="w-3 h-3 rounded-full bg-emerald-500"></div>
-                            </div>
-                            <div class="bg-stone-100 px-4 py-1 rounded-md text-xs text-stone-600 border border-stone-200 font-mono">deep-water-media</div>
-                            <span class="text-xs bg-cyan-50 text-cyan-800 border border-cyan-200 px-2.5 py-0.5 rounded-md font-semibold">Canyoning</span>
-                        </div>
-
-                        <div class="h-44 bg-gradient-to-br from-cyan-100 via-stone-50 to-white border-b border-stone-200 p-6 flex flex-col justify-between">
-                            <div class="flex items-center justify-between">
-                                <span class="text-xs bg-cyan-100 text-cyan-900 px-3 py-1 rounded-lg border border-cyan-200 font-bold">סיורי הרפתקאות</span>
-                                <span class="text-xs text-stone-500 font-mono">Live Demo ↗</span>
-                            </div>
-                            <div>
-                                <h3 class="text-2xl font-black text-stone-900">Deep Waters</h3>
-                                <p class="text-xs text-stone-600 mt-1">סיורי קניונינג מקצועיים במונטנגרו</p>
-                            </div>
-                        </div>
-
-                        <div class="p-6 space-y-4 flex-1 flex flex-col justify-between">
-                            <p class="text-stone-700 text-sm leading-relaxed">אתר מקצועי ומרשים לסיורי קניונינג הכולל מערכת הזמנות מתקדמת, גלריות מדיה מרהיבות ומידע מקצועי למטיילים.</p>
-                            <a href="https://deep-water-media.lovable.app/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center w-full bg-white hover:bg-emerald-600 hover:text-white text-stone-900 py-3.5 px-4 rounded-xl font-bold text-sm transition-all gap-2 border border-stone-300">
-                                <span>צפה באתר החי</span><span>↗</span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- 3: Pet E-Commerce -->
-                    <div class="w-[440px] bg-stone-50 border border-stone-200 rounded-3xl overflow-hidden flex flex-col justify-between hover:border-emerald-600 hover:shadow-md transition-all group shrink-0">
-                        <div class="bg-white px-4 py-3 border-b border-stone-200 flex items-center justify-between">
-                            <div class="flex items-center gap-2">
-                                <div class="w-3 h-3 rounded-full bg-red-400"></div>
-                                <div class="w-3 h-3 rounded-full bg-amber-400"></div>
-                                <div class="w-3 h-3 rounded-full bg-emerald-500"></div>
-                            </div>
-                            <div class="bg-stone-100 px-4 py-1 rounded-md text-xs text-stone-600 border border-stone-200 font-mono">story-spark-pets</div>
-                            <span class="text-xs bg-indigo-50 text-indigo-800 border border-indigo-200 px-2.5 py-0.5 rounded-md font-semibold">E-Commerce</span>
-                        </div>
-
-                        <div class="h-44 bg-gradient-to-br from-indigo-100 via-stone-50 to-white border-b border-stone-200 p-6 flex flex-col justify-between">
-                            <div class="flex items-center justify-between">
-                                <span class="text-xs bg-indigo-100 text-indigo-900 px-3 py-1 rounded-lg border border-indigo-200 font-bold">חנות אונליין</span>
-                                <span class="text-xs text-stone-500 font-mono">Live Demo ↗</span>
-                            </div>
-                            <div>
-                                <h3 class="text-2xl font-black text-stone-900">כלבו אונליין לחיות מחמד</h3>
-                                <p class="text-xs text-stone-600 mt-1">חנות מוצרים ומדריכי טיפול לחיות מחמד</p>
-                            </div>
-                        </div>
-
-                        <div class="p-6 space-y-4 flex-1 flex flex-col justify-between">
-                            <p class="text-stone-700 text-sm leading-relaxed">חנות כלבו דיגיטלית מתקדמת לחיות מחמד המשולבת במרכז תוכן עשיר, טיפים ומדריכים לגידול נכון.</p>
-                            <a href="https://story-spark-content-hub.lovable.app/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center w-full bg-white hover:bg-emerald-600 hover:text-white text-stone-900 py-3.5 px-4 rounded-xl font-bold text-sm transition-all gap-2 border border-stone-300">
-                                <span>צפה באתר החי</span><span>↗</span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- 4: Stanko Travel -->
-                    <div class="w-[440px] bg-stone-50 border border-stone-200 rounded-3xl overflow-hidden flex flex-col justify-between hover:border-emerald-600 hover:shadow-md transition-all group shrink-0">
-                        <div class="bg-white px-4 py-3 border-b border-stone-200 flex items-center justify-between">
-                            <div class="flex items-center gap-2">
-                                <div class="w-3 h-3 rounded-full bg-red-400"></div>
-                                <div class="w-3 h-3 rounded-full bg-amber-400"></div>
-                                <div class="w-3 h-3 rounded-full bg-emerald-500"></div>
-                            </div>
-                            <div class="bg-stone-100 px-4 py-1 rounded-md text-xs text-stone-600 border border-stone-200 font-mono">activity-booking-hub</div>
-                            <span class="text-xs bg-emerald-50 text-emerald-800 border border-emerald-200 px-2.5 py-0.5 rounded-md font-semibold">Booking</span>
-                        </div>
-
-                        <div class="h-44 bg-gradient-to-br from-emerald-100 via-stone-50 to-white border-b border-stone-200 p-6 flex flex-col justify-between">
-                            <div class="flex items-center justify-between">
-                                <span class="text-xs bg-emerald-100 text-emerald-900 px-3 py-1 rounded-lg border border-emerald-200 font-bold">מערכת הזמנות</span>
-                                <span class="text-xs text-stone-500 font-mono">Live Demo ↗</span>
-                            </div>
-                            <div>
-                                <h3 class="text-2xl font-black text-stone-900">Stanko Travel</h3>
-                                <p class="text-xs text-stone-600 mt-1">פלטפורמת הזמנת חוויות טיול ייחודיות</p>
-                            </div>
-                        </div>
-
-                        <div class="p-6 space-y-4 flex-1 flex flex-col justify-between">
-                            <p class="text-stone-700 text-sm leading-relaxed">מערכת הזמנת פעילויות וטיולים בהדרכת מקומיים, בעיצוב נקי, מהיר וחווייתי במיוחד למשתמש.</p>
-                            <a href="https://activity-booking-story-hub.lovable.app/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center w-full bg-white hover:bg-emerald-600 hover:text-white text-stone-900 py-3.5 px-4 rounded-xl font-bold text-sm transition-all gap-2 border border-stone-300">
-                                <span>צפה באתר החי</span><span>↗</span>
-                            </a>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- Services & Pricing Section -->
-        <section id="services" class="py-20 px-6 max-w-6xl mx-auto space-y-12">
-            <div id="pricing" class="text-center space-y-3">
-                <h2 class="text-3xl font-black text-stone-900">שירותים ומחירון שקוף</h2>
-                <p class="text-stone-600 max-w-xl mx-auto">פתרונות טכנולוגיים ממוקדים שמתאימים בדיוק לעסק שלך.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="bg-white border border-stone-200 rounded-3xl p-6 flex flex-col justify-between shadow-sm hover:border-emerald-600 transition-all">
-                    <div class="space-y-3">
-                        <span class="text-xs bg-emerald-50 text-emerald-800 px-3 py-1 rounded-full font-semibold border border-emerald-200">מהיר וממיר</span>
-                        <h3 class="text-xl font-black text-stone-900">דף נחיתה מתקדם</h3>
-                        <p class="text-stone-600 text-sm">עמוד ממוקד בעיצוב אישי, מותאם מושלם לנייד, טופס לידים וחיבור מהיר לוואטסאפ.</p>
-                        <div class="pt-3 border-t border-stone-100">
-                            <div class="text-2xl font-black text-emerald-700">החל מ-1,500 ₪</div>
-                        </div>
-                    </div>
-                    <div class="pt-6">
-                        <a href="#contact" class="block text-center w-full bg-stone-50 hover:bg-emerald-600 hover:text-white text-stone-900 border border-stone-300 py-2.5 rounded-xl font-bold text-sm transition-all">צור קשר</a>
-                    </div>
-                </div>
-
-                <div class="bg-white border-2 border-emerald-600/50 rounded-3xl p-6 flex flex-col justify-between shadow-sm">
-                    <div class="space-y-3">
-                        <span class="text-xs bg-emerald-100 text-emerald-900 px-3 py-1 rounded-full font-semibold border border-emerald-200">הפופולרי ביותר</span>
-                        <h3 class="text-xl font-black text-stone-900">אתר תדמית עסקי</h3>
-                        <p class="text-stone-600 text-sm">אתר בוטיק מרשים (עד 5 עמודים) שמשדר מקצועיות ומציג את השירותים שלך בצורה המושלמת.</p>
-                        <div class="pt-3 border-t border-stone-100">
-                            <div class="text-2xl font-black text-emerald-700">החל מ-3,500 ₪</div>
-                        </div>
-                    </div>
-                    <div class="pt-6">
-                        <a href="#contact" class="block text-center w-full bg-emerald-600 hover:bg-emerald-500 text-white py-2.5 rounded-xl font-bold text-sm transition-all shadow-sm">צור קשר</a>
-                    </div>
-                </div>
-
-                <div class="bg-white border border-stone-200 rounded-3xl p-6 flex flex-col justify-between shadow-sm hover:border-emerald-600 transition-all">
-                    <div class="space-y-3">
-                        <span class="text-xs bg-purple-50 text-purple-800 px-3 py-1 rounded-full font-semibold border border-purple-200">מכירות אונליין</span>
-                        <h3 class="text-xl font-black text-stone-900">אתר מכירות (חנות)</h3>
-                        <p class="text-stone-600 text-sm">חנות אונליין מלאה עם קטלוג מוצרים, ניהול הזמנות ומערכת סליקה מאובטחת.</p>
-                        <div class="pt-3 border-t border-stone-100">
-                            <div class="text-2xl font-black text-emerald-700">החל מ-5,500 ₪</div>
-                        </div>
-                    </div>
-                    <div class="pt-6">
-                        <a href="#contact" class="block text-center w-full bg-stone-50 hover:bg-emerald-600 hover:text-white text-stone-900 border border-stone-300 py-2.5 rounded-xl font-bold text-sm transition-all">צור קשר</a>
-                    </div>
-                </div>
-
-                <div class="bg-white border border-stone-200 rounded-3xl p-6 flex flex-col justify-between shadow-sm hover:border-emerald-600 transition-all">
-                    <div class="space-y-3">
-                        <span class="text-xs bg-cyan-50 text-cyan-800 px-3 py-1 rounded-full font-semibold border border-cyan-200">שיווק ופרסום</span>
-                        <h3 class="text-xl font-black text-stone-900">קידום ממומן (PPC)</h3>
-                        <p class="text-stone-600 text-sm">הקמת קמפיינים בגוגל וברשתות החברתיות וניהול שוטף להבאת לקוחות חדשים לעסק.</p>
-                        <div class="pt-3 border-t border-stone-100">
-                            <div class="text-2xl font-black text-emerald-700">החל מ-1,000 ₪</div>
-                        </div>
-                    </div>
-                    <div class="pt-6">
-                        <a href="#contact" class="block text-center w-full bg-stone-50 hover:bg-emerald-600 hover:text-white text-stone-900 border border-stone-300 py-2.5 rounded-xl font-bold text-sm transition-all">צור קשר</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- קישור לדוגמת דף נחיתה לעסק של ספרים -->
-            <div class="bg-white border border-stone-200 rounded-3xl p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-sm">
-                <div class="space-y-1">
-                    <span class="text-xs bg-emerald-50 text-emerald-800 px-3 py-1 rounded-full font-semibold border border-emerald-200">דוגמה לדף נחיתה</span>
-                    <h3 class="text-xl font-black text-stone-900">דף נחיתה לעסק של ספרים – "קריאת חצות"</h3>
-                    <p class="text-stone-600 text-sm">דוגמה מוכנה לדף נחיתה לחנות והוצאת ספרים עם קטלוג כותרים, מארזים וטופס פנייה.</p>
-                </div>
-                <a href="books-landing.html" class="bg-emerald-600 hover:bg-emerald-500 text-white px-5 py-3 rounded-xl font-bold text-sm transition-all shrink-0">
-                    לדף נחיתה – ספרים ↗
-                </a>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="py-20 px-6 max-w-3xl mx-auto">
-            <div class="bg-white p-8 md:p-12 rounded-3xl border border-stone-200 shadow-sm space-y-6 text-stone-800">
-                <div class="space-y-3 text-center">
-                    <h2 class="text-3xl font-black text-stone-900">צור קשר</h2>
-                    <p class="text-stone-600 text-sm">שמואל דזבינסקי · SD Creative – השאירו פרטים או פנו ישירות</p>
-
-                    <div class="flex flex-wrap items-center justify-center gap-3 pt-2">
-                        <a href="tel:+972545800802" class="px-4 py-2.5 rounded-xl bg-stone-50 hover:bg-stone-100 border border-stone-300 text-stone-900 font-bold text-sm transition-colors" dir="ltr">
-                            📞 054-5800802
+                    <h1 class="text-4xl md:text-6xl font-black tracking-tight leading-tight text-stone-900">
+                        הופך את החזון הדיגיטלי שלך <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-700 to-teal-600">למציאות שעובדת בשבילך</span>
+                    </h1>
+                    <p class="text-lg text-stone-600 max-w-2xl mx-auto font-normal">
+                        שמואל דזבינסקי (SD Creative) – בניית אתרי בוטיק, דפי נחיתה אינטראקטיביים ומערכות מותאמות אישית לעסקים שרוצים לבלוט, לרוץ מהר ולמכור יותר.
+                    </p>
+                    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+                        <a href="#portfolio" class="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-500 text-white px-8 py-4 rounded-2xl font-bold transition-all shadow-sm text-center">
+                            לתיק העבודות שלי
                         </a>
-                        <a href="mailto:shmulikdge@gmail.com" class="px-4 py-2.5 rounded-xl bg-stone-50 hover:bg-stone-100 border border-stone-300 text-stone-900 font-bold text-sm transition-colors">
-                            ✉️ shmulikdge@gmail.com
+                        <a href="#contact" class="w-full sm:w-auto bg-white hover:bg-stone-50 text-stone-900 border border-stone-300 px-8 py-4 rounded-2xl font-bold transition-all shadow-sm text-center">
+                            צור קשר
                         </a>
                     </div>
                 </div>
+            </section>
 
-                <form id="contact-form" action="https://api.web3forms.com/submit" method="POST" class="space-y-4">
-                    <input type="hidden" name="access_key" value="bdfbdd85-07fd-491f-9bce-2cd65f577c7c">
-                    <input type="hidden" name="subject" value="פנייה חדשה מהאתר - SD Creative">
-                    <input type="hidden" name="from_name" value="SD Creative Website">
+            <!-- פס נע 1: תיק עבודות ראשי -->
+            <section id="portfolio" class="py-24 bg-white border-b border-stone-200 overflow-hidden">
+                <div class="max-w-6xl mx-auto px-6 mb-10 text-center space-y-3">
+                    <span class="inline-block text-xs bg-emerald-50 text-emerald-800 border border-emerald-200 px-3.5 py-1 rounded-full font-bold">
+                        תיק עבודות ראשי · אתרים ומערכות
+                    </span>
+                    <h2 class="text-3xl font-black text-stone-900">תיק עבודות ופרויקטים חיים</h2>
+                    <p class="text-stone-600">האתרים והמערכות המרכזיים שבניתי – לחץ על כרטיס כדי לצפות באתר החי.</p>
+                </div>
+
+                <div class="marquee-wrapper relative py-4">
+                    <div class="absolute top-0 bottom-0 right-0 w-20 bg-gradient-to-l from-white z-10 pointer-events-none"></div>
+                    <div class="absolute top-0 bottom-0 left-0 w-20 bg-gradient-to-r from-white z-10 pointer-events-none"></div>
+
+                    <div class="marquee-track">
+                        <div class="flex gap-7 pr-7 shrink-0" dir="rtl">
+                            <div class="w-[420px] bg-stone-50 border border-stone-200 rounded-3xl overflow-hidden flex flex-col justify-between hover:border-emerald-600 hover:shadow-md transition-all shrink-0">
+                                <div class="bg-white px-4 py-3 border-b border-stone-200 flex items-center justify-between">
+                                    <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-red-400"></span><span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span><span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span></div>
+                                    <div class="bg-stone-100 px-3 py-1 rounded-md text-xs text-stone-600 border border-stone-200 font-mono">our-shabbat-community</div>
+                                    <span class="text-xs bg-emerald-50 text-emerald-800 border border-emerald-200 px-2 py-0.5 rounded-md font-bold">אתר ראשי</span>
+                                </div>
+                                <div class="h-40 bg-gradient-to-br from-amber-100 via-stone-50 to-white border-b border-stone-200 p-6 flex flex-col justify-between">
+                                    <div class="flex items-center justify-between"><span class="text-xs bg-white/90 text-stone-800 px-3 py-1 rounded-lg border border-stone-200 font-bold">פלטפורמת אירוח</span><span class="text-xs text-stone-500 font-mono">Live Demo ↗</span></div>
+                                    <div><h3 class="text-2xl font-black text-stone-900">קהילת אירוח לשבת</h3><p class="text-xs text-stone-600 mt-1">חיבור חכם בין מארחים לאורחים לשבתות</p></div>
+                                </div>
+                                <div class="p-6 space-y-4 flex-1 flex flex-col justify-between">
+                                    <p class="text-stone-700 text-sm leading-relaxed">פלטפורמה חברתית מושקעת המאפשרת תיאום אירוח קהילתי ומציאת מקומות אירוח לשבת בקלות ובמהירות.</p>
+                                    <a href="https://our-shabbat-communit-r3rz.bolt.host/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center w-full bg-white hover:bg-emerald-600 hover:text-white text-stone-900 py-3 px-4 rounded-xl font-bold text-sm transition-all gap-2 border border-stone-300"><span>צפה באתר החי</span><span>↗</span></a>
+                                </div>
+                            </div>
+
+                            <div class="w-[420px] bg-stone-50 border border-stone-200 rounded-3xl overflow-hidden flex flex-col justify-between hover:border-emerald-600 hover:shadow-md transition-all shrink-0">
+                                <div class="bg-white px-4 py-3 border-b border-stone-200 flex items-center justify-between">
+                                    <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-red-400"></span><span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span><span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span></div>
+                                    <div class="bg-stone-100 px-3 py-1 rounded-md text-xs text-stone-600 border border-stone-200 font-mono">deep-water-media</div>
+                                    <span class="text-xs bg-emerald-50 text-emerald-800 border border-emerald-200 px-2 py-0.5 rounded-md font-bold">אתר ראשי</span>
+                                </div>
+                                <div class="h-40 bg-gradient-to-br from-cyan-100 via-stone-50 to-white border-b border-stone-200 p-6 flex flex-col justify-between">
+                                    <div class="flex items-center justify-between"><span class="text-xs bg-white/90 text-stone-800 px-3 py-1 rounded-lg border border-stone-200 font-bold">סיורי הרפתקאות</span><span class="text-xs text-stone-500 font-mono">Live Demo ↗</span></div>
+                                    <div><h3 class="text-2xl font-black text-stone-900">Deep Waters</h3><p class="text-xs text-stone-600 mt-1">סיורי קניונינג מקצועיים במונטנגרו</p></div>
+                                </div>
+                                <div class="p-6 space-y-4 flex-1 flex flex-col justify-between">
+                                    <p class="text-stone-700 text-sm leading-relaxed">אתר מקצועי ומרשים לסיורי קניונינג הכולל מערכת הזמנות מתקדמת, גלריות מדיה מרהיבות ומידע מקצועי למטיילים.</p>
+                                    <a href="https://deep-water-media.lovable.app/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center w-full bg-white hover:bg-emerald-600 hover:text-white text-stone-900 py-3 px-4 rounded-xl font-bold text-sm transition-all gap-2 border border-stone-300"><span>צפה באתר החי</span><span>↗</span></a>
+                                </div>
+                            </div>
+
+                            <div class="w-[420px] bg-stone-50 border border-stone-200 rounded-3xl overflow-hidden flex flex-col justify-between hover:border-emerald-600 hover:shadow-md transition-all shrink-0">
+                                <div class="bg-white px-4 py-3 border-b border-stone-200 flex items-center justify-between">
+                                    <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-red-400"></span><span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span><span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span></div>
+                                    <div class="bg-stone-100 px-3 py-1 rounded-md text-xs text-stone-600 border border-stone-200 font-mono">story-spark-pets</div>
+                                    <span class="text-xs bg-emerald-50 text-emerald-800 border border-emerald-200 px-2 py-0.5 rounded-md font-bold">אתר ראשי</span>
+                                </div>
+                                <div class="h-40 bg-gradient-to-br from-indigo-100 via-stone-50 to-white border-b border-stone-200 p-6 flex flex-col justify-between">
+                                    <div class="flex items-center justify-between"><span class="text-xs bg-white/90 text-stone-800 px-3 py-1 rounded-lg border border-stone-200 font-bold">חנות אונליין</span><span class="text-xs text-stone-500 font-mono">Live Demo ↗</span></div>
+                                    <div><h3 class="text-2xl font-black text-stone-900">כלבו אונליין לחיות מחמד</h3><p class="text-xs text-stone-600 mt-1">חנות מוצרים ומדריכי טיפול לחיות מחמד</p></div>
+                                </div>
+                                <div class="p-6 space-y-4 flex-1 flex flex-col justify-between">
+                                    <p class="text-stone-700 text-sm leading-relaxed">חנות כלבו דיגיטלית מתקדמת לחיות מחמד המשולבת במרכז תוכן עשיר, טיפים ומדריכים לגידול נכון.</p>
+                                    <a href="https://story-spark-content-hub.lovable.app/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center w-full bg-white hover:bg-emerald-600 hover:text-white text-stone-900 py-3 px-4 rounded-xl font-bold text-sm transition-all gap-2 border border-stone-300"><span>צפה באתר החי</span><span>↗</span></a>
+                                </div>
+                            </div>
+
+                            <div class="w-[420px] bg-stone-50 border border-stone-200 rounded-3xl overflow-hidden flex flex-col justify-between hover:border-emerald-600 hover:shadow-md transition-all shrink-0">
+                                <div class="bg-white px-4 py-3 border-b border-stone-200 flex items-center justify-between">
+                                    <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-red-400"></span><span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span><span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span></div>
+                                    <div class="bg-stone-100 px-3 py-1 rounded-md text-xs text-stone-600 border border-stone-200 font-mono">activity-booking-hub</div>
+                                    <span class="text-xs bg-emerald-50 text-emerald-800 border border-emerald-200 px-2 py-0.5 rounded-md font-bold">אתר ראשי</span>
+                                </div>
+                                <div class="h-40 bg-gradient-to-br from-emerald-100 via-stone-50 to-white border-b border-stone-200 p-6 flex flex-col justify-between">
+                                    <div class="flex items-center justify-between"><span class="text-xs bg-white/90 text-stone-800 px-3 py-1 rounded-lg border border-stone-200 font-bold">מערכת הזמנות</span><span class="text-xs text-stone-500 font-mono">Live Demo ↗</span></div>
+                                    <div><h3 class="text-2xl font-black text-stone-900">Stanko Travel</h3><p class="text-xs text-stone-600 mt-1">פלטפורמת הזמנת חוויות טיול ייחודיות</p></div>
+                                </div>
+                                <div class="p-6 space-y-4 flex-1 flex flex-col justify-between">
+                                    <p class="text-stone-700 text-sm leading-relaxed">מערכת הזמנת פעילויות וטיולים בהדרכת מקומיים, בעיצוב נקי, מהיר וחווייתי במיוחד למשתמש.</p>
+                                    <a href="https://activity-booking-story-hub.lovable.app/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center w-full bg-white hover:bg-emerald-600 hover:text-white text-stone-900 py-3 px-4 rounded-xl font-bold text-sm transition-all gap-2 border border-stone-300"><span>צפה באתר החי</span><span>↗</span></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-7 pr-7 shrink-0" dir="rtl" aria-hidden="true">
+                            <div class="w-[420px] bg-stone-50 border border-stone-200 rounded-3xl overflow-hidden flex flex-col justify-between hover:border-emerald-600 hover:shadow-md transition-all shrink-0">
+                                <div class="bg-white px-4 py-3 border-b border-stone-200 flex items-center justify-between">
+                                    <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-red-400"></span><span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span><span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span></div>
+                                    <div class="bg-stone-100 px-3 py-1 rounded-md text-xs text-stone-600 border border-stone-200 font-mono">our-shabbat-community</div>
+                                    <span class="text-xs bg-emerald-50 text-emerald-800 border border-emerald-200 px-2 py-0.5 rounded-md font-bold">אתר ראשי</span>
+                                </div>
+                                <div class="h-40 bg-gradient-to-br from-amber-100 via-stone-50 to-white border-b border-stone-200 p-6 flex flex-col justify-between">
+                                    <div class="flex items-center justify-between"><span class="text-xs bg-white/90 text-stone-800 px-3 py-1 rounded-lg border border-stone-200 font-bold">פלטפורמת אירוח</span><span class="text-xs text-stone-500 font-mono">Live Demo ↗</span></div>
+                                    <div><h3 class="text-2xl font-black text-stone-900">קהילת אירוח לשבת</h3><p class="text-xs text-stone-600 mt-1">חיבור חכם בין מארחים לאורחים לשבתות</p></div>
+                                </div>
+                                <div class="p-6 space-y-4 flex-1 flex flex-col justify-between">
+                                    <p class="text-stone-700 text-sm leading-relaxed">פלטפורמה חברתית מושקעת המאפשרת תיאום אירוח קהילתי ומציאת מקומות אירוח לשבת בקלות ובמהירות.</p>
+                                    <a href="https://our-shabbat-communit-r3rz.bolt.host/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center w-full bg-white hover:bg-emerald-600 hover:text-white text-stone-900 py-3 px-4 rounded-xl font-bold text-sm transition-all gap-2 border border-stone-300"><span>צפה באתר החי</span><span>↗</span></a>
+                                </div>
+                            </div>
+
+                            <div class="w-[420px] bg-stone-50 border border-stone-200 rounded-3xl overflow-hidden flex flex-col justify-between hover:border-emerald-600 hover:shadow-md transition-all shrink-0">
+                                <div class="bg-white px-4 py-3 border-b border-stone-200 flex items-center justify-between">
+                                    <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-red-400"></span><span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span><span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span></div>
+                                    <div class="bg-stone-100 px-3 py-1 rounded-md text-xs text-stone-600 border border-stone-200 font-mono">deep-water-media</div>
+                                    <span class="text-xs bg-emerald-50 text-emerald-800 border border-emerald-200 px-2 py-0.5 rounded-md font-bold">אתר ראשי</span>
+                                </div>
+                                <div class="h-40 bg-gradient-to-br from-cyan-100 via-stone-50 to-white border-b border-stone-200 p-6 flex flex-col justify-between">
+                                    <div class="flex items-center justify-between"><span class="text-xs bg-white/90 text-stone-800 px-3 py-1 rounded-lg border border-stone-200 font-bold">סיורי הרפתקאות</span><span class="text-xs text-stone-500 font-mono">Live Demo ↗</span></div>
+                                    <div><h3 class="text-2xl font-black text-stone-900">Deep Waters</h3><p class="text-xs text-stone-600 mt-1">סיורי קניונינג מקצועיים במונטנגרו</p></div>
+                                </div>
+                                <div class="p-6 space-y-4 flex-1 flex flex-col justify-between">
+                                    <p class="text-stone-700 text-sm leading-relaxed">אתר מקצועי ומרשים לסיורי קניונינג הכולל מערכת הזמנות מתקדמת, גלריות מדיה מרהיבות ומידע מקצועי למטיילים.</p>
+                                    <a href="https://deep-water-media.lovable.app/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center w-full bg-white hover:bg-emerald-600 hover:text-white text-stone-900 py-3 px-4 rounded-xl font-bold text-sm transition-all gap-2 border border-stone-300"><span>צפה באתר החי</span><span>↗</span></a>
+                                </div>
+                            </div>
+
+                            <div class="w-[420px] bg-stone-50 border border-stone-200 rounded-3xl overflow-hidden flex flex-col justify-between hover:border-emerald-600 hover:shadow-md transition-all shrink-0">
+                                <div class="bg-white px-4 py-3 border-b border-stone-200 flex items-center justify-between">
+                                    <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-red-400"></span><span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span><span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span></div>
+                                    <div class="bg-stone-100 px-3 py-1 rounded-md text-xs text-stone-600 border border-stone-200 font-mono">story-spark-pets</div>
+                                    <span class="text-xs bg-emerald-50 text-emerald-800 border border-emerald-200 px-2 py-0.5 rounded-md font-bold">אתר ראשי</span>
+                                </div>
+                                <div class="h-40 bg-gradient-to-br from-indigo-100 via-stone-50 to-white border-b border-stone-200 p-6 flex flex-col justify-between">
+                                    <div class="flex items-center justify-between"><span class="text-xs bg-white/90 text-stone-800 px-3 py-1 rounded-lg border border-stone-200 font-bold">חנות אונליין</span><span class="text-xs text-stone-500 font-mono">Live Demo ↗</span></div>
+                                    <div><h3 class="text-2xl font-black text-stone-900">כלבו אונליין לחיות מחמד</h3><p class="text-xs text-stone-600 mt-1">חנות מוצרים ומדריכי טיפול לחיות מחמד</p></div>
+                                </div>
+                                <div class="p-6 space-y-4 flex-1 flex flex-col justify-between">
+                                    <p class="text-stone-700 text-sm leading-relaxed">חנות כלבו דיגיטלית מתקדמת לחיות מחמד המשולבת במרכז תוכן עשיר, טיפים ומדריכים לגידול נכון.</p>
+                                    <a href="https://story-spark-content-hub.lovable.app/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center w-full bg-white hover:bg-emerald-600 hover:text-white text-stone-900 py-3 px-4 rounded-xl font-bold text-sm transition-all gap-2 border border-stone-300"><span>צפה באתר החי</span><span>↗</span></a>
+                                </div>
+                            </div>
+
+                            <div class="w-[420px] bg-stone-50 border border-stone-200 rounded-3xl overflow-hidden flex flex-col justify-between hover:border-emerald-600 hover:shadow-md transition-all shrink-0">
+                                <div class="bg-white px-4 py-3 border-b border-stone-200 flex items-center justify-between">
+                                    <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-red-400"></span><span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span><span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span></div>
+                                    <div class="bg-stone-100 px-3 py-1 rounded-md text-xs text-stone-600 border border-stone-200 font-mono">activity-booking-hub</div>
+                                    <span class="text-xs bg-emerald-50 text-emerald-800 border border-emerald-200 px-2 py-0.5 rounded-md font-bold">אתר ראשי</span>
+                                </div>
+                                <div class="h-40 bg-gradient-to-br from-emerald-100 via-stone-50 to-white border-b border-stone-200 p-6 flex flex-col justify-between">
+                                    <div class="flex items-center justify-between"><span class="text-xs bg-white/90 text-stone-800 px-3 py-1 rounded-lg border border-stone-200 font-bold">מערכת הזמנות</span><span class="text-xs text-stone-500 font-mono">Live Demo ↗</span></div>
+                                    <div><h3 class="text-2xl font-black text-stone-900">Stanko Travel</h3><p class="text-xs text-stone-600 mt-1">פלטפורמת הזמנת חוויות טיול ייחודיות</p></div>
+                                </div>
+                                <div class="p-6 space-y-4 flex-1 flex flex-col justify-between">
+                                    <p class="text-stone-700 text-sm leading-relaxed">מערכת הזמנת פעילויות וטיולים בהדרכת מקומיים, בעיצוב נקי, מהיר וחווייתי במיוחד למשתמש.</p>
+                                    <a href="https://activity-booking-story-hub.lovable.app/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center w-full bg-white hover:bg-emerald-600 hover:text-white text-stone-900 py-3 px-4 rounded-xl font-bold text-sm transition-all gap-2 border border-stone-300"><span>צפה באתר החי</span><span>↗</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- שירותים ומחירון -->
+            <section id="services" class="py-20 px-6 max-w-6xl mx-auto space-y-12">
+                <div id="pricing" class="text-center space-y-3">
+                    <h2 class="text-3xl font-black text-stone-900">שירותים ומחירון שקוף</h2>
+                    <p class="text-stone-600 max-w-xl mx-auto">פתרונות טכנולוגיים ממוקדים שמתאימים בדיוק לעסק שלך.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="bg-white border border-stone-200 rounded-3xl p-6 flex flex-col justify-between shadow-sm hover:border-emerald-600 transition-all">
+                        <div class="space-y-3">
+                            <span class="text-xs bg-emerald-50 text-emerald-800 px-3 py-1 rounded-full font-semibold border border-emerald-200">מהיר וממיר</span>
+                            <h3 class="text-xl font-black text-stone-900">דף נחיתה מתקדם</h3>
+                            <p class="text-stone-600 text-sm">עמוד ממוקד בעיצוב אישי, מותאם מושלם לנייד, טופס לידים וחיבור מהיר לוואטסאפ.</p>
+                            <div class="pt-3 border-t border-stone-100"><div class="text-2xl font-black text-emerald-700">החל מ-1,500 ₪</div></div>
+                        </div>
+                        <div class="pt-6"><a href="#contact" class="block text-center w-full bg-stone-50 hover:bg-emerald-600 hover:text-white text-stone-900 border border-stone-300 py-2.5 rounded-xl font-bold text-sm transition-all">צור קשר</a></div>
+                    </div>
+
+                    <div class="bg-white border-2 border-emerald-600/50 rounded-3xl p-6 flex flex-col justify-between shadow-sm">
+                        <div class="space-y-3">
+                            <span class="text-xs bg-emerald-100 text-emerald-900 px-3 py-1 rounded-full font-semibold border border-emerald-200">הפופולרי ביותר</span>
+                            <h3 class="text-xl font-black text-stone-900">אתר תדמית עסקי</h3>
+                            <p class="text-stone-600 text-sm">אתר בוטיק מרשים (עד 5 עמודים) שמשדר מקצועיות ומציג את השירותים שלך בצורה המושלמת.</p>
+                            <div class="pt-3 border-t border-stone-100"><div class="text-2xl font-black text-emerald-700">החל מ-3,500 ₪</div></div>
+                        </div>
+                        <div class="pt-6"><a href="#contact" class="block text-center w-full bg-emerald-600 hover:bg-emerald-500 text-white py-2.5 rounded-xl font-bold text-sm transition-all shadow-sm">צור קשר</a></div>
+                    </div>
+
+                    <div class="bg-white border border-stone-200 rounded-3xl p-6 flex flex-col justify-between shadow-sm hover:border-emerald-600 transition-all">
+                        <div class="space-y-3">
+                            <span class="text-xs bg-purple-50 text-purple-800 px-3 py-1 rounded-full font-semibold border border-purple-200">מכירות אונליין</span>
+                            <h3 class="text-xl font-black text-stone-900">אתר מכירות (חנות)</h3>
+                            <p class="text-stone-600 text-sm">חנות אונליין מלאה עם קטלוג מוצרים, ניהול הזמנות ומערכת סליקה מאובטחת.</p>
+                            <div class="pt-3 border-t border-stone-100"><div class="text-2xl font-black text-emerald-700">החל מ-5,500 ₪</div></div>
+                        </div>
+                        <div class="pt-6"><a href="#contact" class="block text-center w-full bg-stone-50 hover:bg-emerald-600 hover:text-white text-stone-900 border border-stone-300 py-2.5 rounded-xl font-bold text-sm transition-all">צור קשר</a></div>
+                    </div>
+
+                    <div class="bg-white border border-stone-200 rounded-3xl p-6 flex flex-col justify-between shadow-sm hover:border-emerald-600 transition-all">
+                        <div class="space-y-3">
+                            <span class="text-xs bg-cyan-50 text-cyan-800 px-3 py-1 rounded-full font-semibold border border-cyan-200">שיווק ופרסום</span>
+                            <h3 class="text-xl font-black text-stone-900">קידום ממומן (PPC)</h3>
+                            <p class="text-stone-600 text-sm">הקמת קמפיינים בגוגל וברשתות החברתיות וניהול שוטף להבאת לקוחות חדשים לעסק.</p>
+                            <div class="pt-3 border-t border-stone-100"><div class="text-2xl font-black text-emerald-700">החל מ-1,000 ₪</div></div>
+                        </div>
+                        <div class="pt-6"><a href="#contact" class="block text-center w-full bg-stone-50 hover:bg-emerald-600 hover:text-white text-stone-900 border border-stone-300 py-2.5 rounded-xl font-bold text-sm transition-all">צור קשר</a></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- פס נע 2: דפי נחיתה -->
+            <section id="landing-pages" class="py-20 bg-stone-100/80 border-y border-stone-200 overflow-hidden">
+                <div class="max-w-6xl mx-auto px-6 mb-10 text-center space-y-3">
+                    <span class="inline-block text-xs bg-stone-200 text-stone-800 border border-stone-300 px-3.5 py-1 rounded-full font-bold">
+                        פס נע · דפי נחיתה (Landing Pages)
+                    </span>
+                    <h2 class="text-3xl font-black text-stone-900">דוגמאות לדפי נחיתה ייעודיים</h2>
+                    <p class="text-stone-600 max-w-2xl mx-auto text-sm">עמודי נחיתה ממוקדי המרה ופניות – נפרדים מהאתרים הראשיים שבתיק העבודות.</p>
+                </div>
+
+                <div class="marquee-wrapper relative py-2">
+                    <div class="absolute top-0 bottom-0 right-0 w-16 bg-gradient-to-l from-stone-100 z-10 pointer-events-none"></div>
+                    <div class="absolute top-0 bottom-0 left-0 w-16 bg-gradient-to-r from-stone-100 z-10 pointer-events-none"></div>
+
+                    <div class="marquee-track-slow">
+                        <div class="flex gap-6 pr-6 shrink-0" dir="rtl">
+                            <div class="w-[340px] bg-white border-2 border-dashed border-stone-300 rounded-2xl p-5 flex flex-col justify-between hover:border-emerald-600 transition-all shrink-0">
+                                <div class="space-y-2.5">
+                                    <div class="flex items-center justify-between gap-2"><span class="text-[11px] bg-stone-900 text-white px-2.5 py-0.5 rounded-md font-bold">דף נחיתה</span><span class="text-xs text-emerald-700 font-bold">ספר גברים וילדים</span></div>
+                                    <h3 class="text-lg font-black text-stone-900">קובי בן חיים – ספר גברים וילדים</h3>
+                                    <p class="text-xs text-stone-600 leading-relaxed">דף נחיתה למספרת גברים וילדים ברחוב השישה עשר, ירושלים – אווירה, מחירון וקביעת תור.</p>
+                                </div>
+                                <div class="pt-4 mt-4 border-t border-stone-100 flex items-center justify-between">
+                                    <span class="text-[11px] font-mono text-stone-500">קובי בן חיים · ירושלים</span>
+                                    <button type="button" onclick="openRoute('barber')" class="bg-emerald-600 hover:bg-emerald-500 text-white px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer">פתח דף נחיתה ↗</button>
+                                </div>
+                            </div>
+
+                            <div class="w-[340px] bg-white border-2 border-dashed border-stone-300 rounded-2xl p-5 flex flex-col justify-between hover:border-emerald-600 transition-all shrink-0">
+                                <div class="space-y-2.5">
+                                    <div class="flex items-center justify-between gap-2"><span class="text-[11px] bg-stone-900 text-white px-2.5 py-0.5 rounded-md font-bold">דף נחיתה</span><span class="text-xs text-emerald-700 font-bold">קולינריה וסדנאות</span></div>
+                                    <h3 class="text-lg font-black text-stone-900">סדנאות בישול ואירוח ביתי</h3>
+                                    <p class="text-xs text-stone-600 leading-relaxed">דף נחיתה להרשמה לסדנאות שולחן אירוח, מתכונים ותפריטים עונתיים.</p>
+                                </div>
+                                <div class="pt-4 mt-4 border-t border-stone-100 flex items-center justify-between">
+                                    <span class="text-[11px] font-mono text-stone-500">צורית · המטבח הבוכרי</span>
+                                    <button type="button" onclick="openRoute('workshop')" class="bg-emerald-600 hover:bg-emerald-500 text-white px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer">פתח דף נחיתה ↗</button>
+                                </div>
+                            </div>
+
+                            <div class="w-[340px] bg-white border-2 border-dashed border-stone-300 rounded-2xl p-5 flex flex-col justify-between hover:border-emerald-600 transition-all shrink-0">
+                                <div class="space-y-2.5">
+                                    <div class="flex items-center justify-between gap-2"><span class="text-[11px] bg-stone-900 text-white px-2.5 py-0.5 rounded-md font-bold">דף נחיתה</span><span class="text-xs text-emerald-700 font-bold">שירות וטכנולוגיה</span></div>
+                                    <h3 class="text-lg font-black text-stone-900">טכנאי מחשבים עד הבית והעסק</h3>
+                                    <p class="text-xs text-stone-600 leading-relaxed">דף נחיתה ממוקד קריאות שירות, אבחון תקלות והתקנות מערכת מהירות.</p>
+                                </div>
+                                <div class="pt-4 mt-4 border-t border-stone-100 flex items-center justify-between">
+                                    <span class="text-[11px] font-mono text-stone-500">landing-tech-support</span>
+                                    <a href="#contact" class="bg-stone-100 hover:bg-emerald-600 hover:text-white text-stone-900 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all">הזמן דף דומה</a>
+                                </div>
+                            </div>
+
+                            <div class="w-[340px] bg-white border-2 border-dashed border-stone-300 rounded-2xl p-5 flex flex-col justify-between hover:border-emerald-600 transition-all shrink-0">
+                                <div class="space-y-2.5">
+                                    <div class="flex items-center justify-between gap-2"><span class="text-[11px] bg-stone-900 text-white px-2.5 py-0.5 rounded-md font-bold">דף נחיתה</span><span class="text-xs text-emerald-700 font-bold">אפליקציות ומערכות</span></div>
+                                    <h3 class="text-lg font-black text-stone-900">השקת אפליקציה / מערכת חדשה</h3>
+                                    <p class="text-xs text-stone-600 leading-relaxed">דף נחיתה להצגת פיצ'רים, יתרונות למשתמשים ואיסוף לידים או הורדות.</p>
+                                </div>
+                                <div class="pt-4 mt-4 border-t border-stone-100 flex items-center justify-between">
+                                    <span class="text-[11px] font-mono text-stone-500">landing-app-launch</span>
+                                    <a href="#contact" class="bg-stone-100 hover:bg-emerald-600 hover:text-white text-stone-900 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all">הזמן דף דומה</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-6 pr-6 shrink-0" dir="rtl" aria-hidden="true">
+                            <div class="w-[340px] bg-white border-2 border-dashed border-stone-300 rounded-2xl p-5 flex flex-col justify-between hover:border-emerald-600 transition-all shrink-0">
+                                <div class="space-y-2.5">
+                                    <div class="flex items-center justify-between gap-2"><span class="text-[11px] bg-stone-900 text-white px-2.5 py-0.5 rounded-md font-bold">דף נחיתה</span><span class="text-xs text-emerald-700 font-bold">ספר גברים וילדים</span></div>
+                                    <h3 class="text-lg font-black text-stone-900">קובי בן חיים – ספר גברים וילדים</h3>
+                                    <p class="text-xs text-stone-600 leading-relaxed">דף נחיתה למספרת גברים וילדים ברחוב השישה עשר, ירושלים – אווירה, מחירון וקביעת תור.</p>
+                                </div>
+                                <div class="pt-4 mt-4 border-t border-stone-100 flex items-center justify-between">
+                                    <span class="text-[11px] font-mono text-stone-500">קובי בן חיים · ירושלים</span>
+                                    <button type="button" onclick="openRoute('barber')" class="bg-emerald-600 hover:bg-emerald-500 text-white px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer">פתח דף נחיתה ↗</button>
+                                </div>
+                            </div>
+
+                            <div class="w-[340px] bg-white border-2 border-dashed border-stone-300 rounded-2xl p-5 flex flex-col justify-between hover:border-emerald-600 transition-all shrink-0">
+                                <div class="space-y-2.5">
+                                    <div class="flex items-center justify-between gap-2"><span class="text-[11px] bg-stone-900 text-white px-2.5 py-0.5 rounded-md font-bold">דף נחיתה</span><span class="text-xs text-emerald-700 font-bold">קולינריה וסדנאות</span></div>
+                                    <h3 class="text-lg font-black text-stone-900">סדנאות בישול ואירוח ביתי</h3>
+                                    <p class="text-xs text-stone-600 leading-relaxed">דף נחיתה להרשמה לסדנאות שולחן אירוח, מתכונים ותפריטים עונתיים.</p>
+                                </div>
+                                <div class="pt-4 mt-4 border-t border-stone-100 flex items-center justify-between">
+                                    <span class="text-[11px] font-mono text-stone-500">צורית · המטבח הבוכרי</span>
+                                    <button type="button" onclick="openRoute('workshop')" class="bg-emerald-600 hover:bg-emerald-500 text-white px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer">פתח דף נחיתה ↗</button>
+                                </div>
+                            </div>
+
+                            <div class="w-[340px] bg-white border-2 border-dashed border-stone-300 rounded-2xl p-5 flex flex-col justify-between hover:border-emerald-600 transition-all shrink-0">
+                                <div class="space-y-2.5">
+                                    <div class="flex items-center justify-between gap-2"><span class="text-[11px] bg-stone-900 text-white px-2.5 py-0.5 rounded-md font-bold">דף נחיתה</span><span class="text-xs text-emerald-700 font-bold">שירות וטכנולוגיה</span></div>
+                                    <h3 class="text-lg font-black text-stone-900">טכנאי מחשבים עד הבית והעסק</h3>
+                                    <p class="text-xs text-stone-600 leading-relaxed">דף נחיתה ממוקד קריאות שירות, אבחון תקלות והתקנות מערכת מהירות.</p>
+                                </div>
+                                <div class="pt-4 mt-4 border-t border-stone-100 flex items-center justify-between">
+                                    <span class="text-[11px] font-mono text-stone-500">landing-tech-support</span>
+                                    <a href="#contact" class="bg-stone-100 hover:bg-emerald-600 hover:text-white text-stone-900 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all">הזמן דף דומה</a>
+                                </div>
+                            </div>
+
+                            <div class="w-[340px] bg-white border-2 border-dashed border-stone-300 rounded-2xl p-5 flex flex-col justify-between hover:border-emerald-600 transition-all shrink-0">
+                                <div class="space-y-2.5">
+                                    <div class="flex items-center justify-between gap-2"><span class="text-[11px] bg-stone-900 text-white px-2.5 py-0.5 rounded-md font-bold">דף נחיתה</span><span class="text-xs text-emerald-700 font-bold">אפליקציות ומערכות</span></div>
+                                    <h3 class="text-lg font-black text-stone-900">השקת אפליקציה / מערכת חדשה</h3>
+                                    <p class="text-xs text-stone-600 leading-relaxed">דף נחיתה להצגת פיצ'רים, יתרונות למשתמשים ואיסוף לידים או הורדות.</p>
+                                </div>
+                                <div class="pt-4 mt-4 border-t border-stone-100 flex items-center justify-between">
+                                    <span class="text-[11px] font-mono text-stone-500">landing-app-launch</span>
+                                    <a href="#contact" class="bg-stone-100 hover:bg-emerald-600 hover:text-white text-stone-900 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all">הזמן דף דומה</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- צור קשר -->
+            <section id="contact" class="py-20 px-6 max-w-3xl mx-auto">
+                <div class="bg-white p-8 md:p-12 rounded-3xl border border-stone-200 shadow-sm space-y-6 text-stone-800">
+                    <div class="space-y-3 text-center">
+                        <h2 class="text-3xl font-black text-stone-900">צור קשר</h2>
+                        <p class="text-stone-600 text-sm">שמואל דזבינסקי · SD Creative – השאירו פרטים או פנו ישירות</p>
+
+                        <div class="flex flex-wrap items-center justify-center gap-3 pt-2">
+                            <a href="tel:+972545800802" class="px-4 py-2.5 rounded-xl bg-stone-50 hover:bg-stone-100 border border-stone-300 text-stone-900 font-bold text-sm transition-colors" dir="ltr">📞 054-5800802</a>
+                            <a href="mailto:shmulikdge@gmail.com" class="px-4 py-2.5 rounded-xl bg-stone-50 hover:bg-stone-100 border border-stone-300 text-stone-900 font-bold text-sm transition-colors">✉️ shmulikdge@gmail.com</a>
+                        </div>
+                    </div>
+
+                    <form id="contact-form" action="https://api.web3forms.com/submit" method="POST" class="space-y-4">
+                        <input type="hidden" name="access_key" value="bdfbdd85-07fd-491f-9bce-2cd65f577c7c">
+                        <input type="hidden" name="subject" value="פנייה חדשה מהאתר - SD Creative">
+                        <input type="hidden" name="from_name" value="SD Creative Website">
+
+                        <div>
+                            <label class="block text-sm font-bold text-stone-700 mb-1">שם מלא</label>
+                            <input type="text" name="name" required class="w-full px-4 py-3 rounded-xl border border-stone-300 focus:border-emerald-600 focus:outline-none text-sm bg-stone-50 text-stone-900" placeholder="השם שלך">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-stone-700 mb-1">אימייל לחזרה</label>
+                            <input type="email" name="email" required class="w-full px-4 py-3 rounded-xl border border-stone-300 focus:border-emerald-600 focus:outline-none text-sm bg-stone-50 text-stone-900" placeholder="name@example.com" dir="ltr">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-stone-700 mb-1">טלפון נייד</label>
+                            <input type="tel" name="phone" required class="w-full px-4 py-3 rounded-xl border border-stone-300 focus:border-emerald-600 focus:outline-none text-sm bg-stone-50 text-stone-900" placeholder="054-5800802" dir="ltr">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-stone-700 mb-1">איזה פרויקט תרצה שנבנה?</label>
+                            <textarea name="message" rows="4" required class="w-full px-4 py-3 rounded-xl border border-stone-300 focus:border-emerald-600 focus:outline-none text-sm bg-stone-50 text-stone-900" placeholder="ספר בקצרה על העסק או הרעיון שלך..."></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white py-3.5 rounded-xl font-bold text-sm transition-all shadow-sm">
+                            צור קשר
+                        </button>
+                        <p id="form-status" class="text-center text-sm font-medium hidden"></p>
+                    </form>
+                </div>
+            </section>
+        </main>
+
+        <footer class="border-t border-stone-200 bg-white py-8 text-center text-sm text-stone-500 space-y-2">
+            <p>© 2026 SD Creative · שמואל דזבינסקי. כל הזכויות שמורות.</p>
+            <p class="space-x-4 space-x-reverse text-stone-700">
+                <button type="button" onclick="openRoute('barber')" class="hover:text-emerald-700 underline cursor-pointer">דף נחיתה – ספר גברים וילדים</button>
+                <span>·</span>
+                <button type="button" onclick="openRoute('workshop')" class="hover:text-emerald-700 underline cursor-pointer">דף נחיתה – סדנת בישול</button>
+                <span>·</span>
+                <a href="tel:+972545800802" dir="ltr" class="hover:text-emerald-700">054-5800802</a>
+                <span>·</span>
+                <a href="mailto:shmulikdge@gmail.com" class="hover:text-emerald-700">shmulikdge@gmail.com</a>
+            </p>
+        </footer>
+    </div>
+
+    <!-- ==================== VIEW 2: KOBI BEN CHAIM BARBERSHOP LANDING PAGE ==================== -->
+    <div id="view-barber" class="hidden bg-charcoal text-creamWhite font-body min-h-screen">
+        <div class="h-1.5 w-full bg-gradient-to-l from-copper via-emeraldMuted to-copper"></div>
+
+        <header class="sticky top-0 z-40 bg-charcoal/90 backdrop-blur-md border-b border-white/10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-20 gap-3">
+                    <div class="flex items-center gap-3.5">
+                        <button type="button" onclick="openRoute('')" class="px-3 py-1.5 rounded-xl bg-graphite hover:bg-graphiteLight border border-white/15 text-xs font-bold text-silverMuted hover:text-creamWhite transition-colors cursor-pointer">
+                            ← SD Creative
+                        </button>
+                        <a href="#barber-top" class="flex items-center gap-3 group">
+                            <div class="w-10 h-10 rounded-2xl bg-graphite border border-copper/40 flex items-center justify-center shadow-md group-hover:border-copper transition-colors">
+                                <svg class="w-5 h-5 text-copper" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="6" cy="6" r="3"></circle>
+                                    <circle cx="6" cy="18" r="3"></circle>
+                                    <line x1="20" y1="4" x2="8.12" y2="15.88"></line>
+                                    <line x1="14.47" y1="14.48" x2="20" y2="20"></line>
+                                    <line x1="8.12" y1="8.12" x2="12" y2="12"></line>
+                                </svg>
+                            </div>
+                            <div>
+                                <span class="block font-display font-extrabold text-lg sm:text-xl tracking-tight text-creamWhite leading-none">
+                                    קובי בן חיים
+                                </span>
+                                <span class="block text-[10px] font-bold tracking-[0.2em] text-copper uppercase mt-1">
+                                    BARBERSHOP • JERUSALEM
+                                </span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-silverMuted">
+                        <a href="#experience" class="hover:text-creamWhite transition-colors">החוויה</a>
+                        <a href="#barber-pricing" class="hover:text-creamWhite transition-colors">תספורות ומחירון</a>
+                        <a href="#hours-location" class="hover:text-creamWhite transition-colors">שעות פתיחה ומיקום</a>
+                        <a href="#booking" class="hover:text-creamWhite transition-colors">קביעת תור</a>
+                    </nav>
+
+                    <div class="flex items-center gap-2">
+                        <a href="#booking" class="hidden sm:inline-flex items-center gap-2 bg-copper hover:bg-copperHover text-charcoal font-extrabold px-4 py-2.5 rounded-xl shadow-copper-glow transition-all text-sm">
+                            <span>קביעת תור עכשיו</span>
+                        </a>
+                        <button id="mobile-menu-btn" type="button" aria-label="תפריט ניווט" class="md:hidden p-2.5 rounded-xl bg-graphite border border-white/10 text-creamWhite hover:border-copper transition-colors cursor-pointer">
+                            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                                <line x1="3" y1="6" x2="21" y2="6"></line>
+                                <line x1="3" y1="12" x2="21" y2="12"></line>
+                                <line x1="3" y1="18" x2="21" y2="18"></line>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="mobile-menu" class="hidden md:hidden bg-graphite border-b border-white/10 px-4 pt-3 pb-6 space-y-2 shadow-2xl">
+                <a href="#experience" class="mobile-link block px-4 py-3 rounded-xl hover:bg-graphiteLight font-semibold text-creamWhite">החוויה במספרה</a>
+                <a href="#barber-pricing" class="mobile-link block px-4 py-3 rounded-xl hover:bg-graphiteLight font-semibold text-creamWhite">תספורות ומחירון</a>
+                <a href="#hours-location" class="mobile-link block px-4 py-3 rounded-xl hover:bg-graphiteLight font-semibold text-creamWhite">שעות פתיחה ומיקום</a>
+                <div class="pt-2">
+                    <a href="#booking" class="mobile-link block text-center bg-copper text-charcoal font-extrabold py-3.5 rounded-xl shadow-copper-glow">קביעת תור עכשיו</a>
+                </div>
+            </div>
+        </header>
+
+        <section id="barber-top" class="relative pt-10 pb-20 lg:pt-16 lg:pb-24 urban-grid-bg overflow-hidden">
+            <div class="pointer-events-none absolute -top-24 right-1/4 w-96 h-96 bg-copper/10 rounded-full blur-3xl"></div>
+            <div class="pointer-events-none absolute bottom-0 left-10 w-80 h-80 bg-emeraldMuted/10 rounded-full blur-3xl"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <div class="lg:col-span-6 text-right space-y-6">
+                        <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-graphite border border-copper/35 text-copperHover font-bold text-sm shadow-sm">
+                            <span class="w-2 h-2 rounded-full bg-emeraldMuted animate-pulse"></span>
+                            <span>רחוב השישה עשר, פסגת זאב • ירושלים</span>
+                        </div>
+
+                        <h1 class="font-display font-black text-4xl sm:text-5xl lg:text-6xl text-creamWhite leading-[1.12]">
+                            לא עוד סתם תספורת – <br class="hidden sm:inline">
+                            <span class="text-transparent bg-clip-text bg-gradient-to-l from-copper to-copperHover">החוויה של גברים וילדים</span> בירושלים
+                        </h1>
+
+                        <p class="text-lg sm:text-xl text-silverMuted leading-relaxed font-normal">
+                            אצל קובי בן חיים ברחוב השישה עשר מחכה לכם הרבה יותר מתספורת מדויקת: פלייליסטים מקפיצים ברקע, שתייה קרה או קפה על חשבון הבית, סבלנות אין-סופית לילדים ודיוק עד המילימטר האחרון בכל פייד וזקן.
+                        </p>
+
+                        <div class="flex flex-wrap gap-3 pt-1">
+                            <span class="inline-flex items-center gap-2 bg-graphite px-3.5 py-2 rounded-xl text-sm font-semibold text-creamWhite border border-white/10">
+                                <span class="w-2.5 h-2.5 rounded-full bg-copper"></span>
+                                פיידים וזקנים ברמת דיוק גבוהה
+                            </span>
+                            <span class="inline-flex items-center gap-2 bg-graphite px-3.5 py-2 rounded-xl text-sm font-semibold text-creamWhite border border-white/10">
+                                <span class="w-2.5 h-2.5 rounded-full bg-emeraldMuted"></span>
+                                מוזיקה טובה ושתייה קרה עלינו
+                            </span>
+                            <span class="inline-flex items-center gap-2 bg-graphite px-3.5 py-2 rounded-xl text-sm font-semibold text-creamWhite border border-white/10">
+                                <span class="w-2.5 h-2.5 rounded-full bg-copperHover"></span>
+                                גישה מיוחדת וכיפית לילדים
+                            </span>
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-3">
+                            <a href="#booking" class="inline-flex items-center justify-center gap-3 bg-copper hover:bg-copperHover text-charcoal font-extrabold text-lg px-8 py-4 rounded-2xl shadow-copper-glow transition-all transform hover:-translate-y-0.5">
+                                <span>קביעת תור מהירה</span>
+                                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                                    <polyline points="12 19 5 12 12 5"></polyline>
+                                </svg>
+                            </a>
+                            <a href="#barber-pricing" class="inline-flex items-center justify-center gap-2.5 bg-graphite hover:bg-graphiteLight text-creamWhite border border-white/15 font-bold text-lg px-7 py-4 rounded-2xl transition-all">
+                                <span>למחירון המלא</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-6">
+                        <div class="relative rounded-3xl overflow-hidden shadow-card-dark border border-white/15 bg-graphite">
+                            <svg viewBox="0 0 640 500" class="w-full h-auto block" role="img" aria-label="איור אורבני של מספרת גברים וילדים עם כיסא ספרים, עמוד ספרים מסתובב, רמקולים ותווי מוזיקה, כלי תספורת ושתייה קרה">
+                                <defs>
+                                    <linearGradient id="bgWall" x1="0%" y1="0%" x2="0%" y2="100%">
+                                        <stop offset="0%" stop-color="#14171F"/>
+                                        <stop offset="100%" stop-color="#1E222D"/>
+                                    </linearGradient>
+                                    <linearGradient id="mirrorGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="#282E3D"/>
+                                        <stop offset="50%" stop-color="#1A1E28"/>
+                                        <stop offset="100%" stop-color="#252B38"/>
+                                    </linearGradient>
+                                    <linearGradient id="copperMetal" x1="0%" y1="0%" x2="100%" y2="0%">
+                                        <stop offset="0%" stop-color="#9E4F1E"/>
+                                        <stop offset="50%" stop-color="#E58A4A"/>
+                                        <stop offset="100%" stop-color="#B85E25"/>
+                                    </linearGradient>
+                                    <clipPath id="poleClip">
+                                        <rect x="74" y="135" width="32" height="140" rx="4"/>
+                                    </clipPath>
+                                </defs>
+
+                                <rect width="640" height="500" fill="url(#bgWall)"/>
+                                <rect x="0" y="425" width="640" height="75" fill="#0B0D10"/>
+                                <line x1="0" y1="425" x2="640" y2="425" stroke="#D97736" stroke-width="2" opacity="0.45"/>
+
+                                <g transform="translate(175, 55)">
+                                    <rect x="0" y="0" width="290" height="240" rx="22" fill="#0F1115" stroke="#D97736" stroke-width="4"/>
+                                    <rect x="12" y="12" width="266" height="216" rx="14" fill="url(#mirrorGlow)"/>
+                                    <polygon points="35,12 95,12 45,228 12,228" fill="#FFFFFF" opacity="0.04"/>
+                                    <polygon points="115,12 140,12 90,228 65,228" fill="#FFFFFF" opacity="0.025"/>
+                                    <text x="145" y="48" text-anchor="middle" fill="#E58A4A" font-family="Rubik, sans-serif" font-weight="800" font-size="16" letter-spacing="3">KOBI BARBER</text>
+                                    <line x1="75" y1="58" x2="215" y2="58" stroke="#2A9D8F" stroke-width="2" stroke-linecap="round"/>
+                                </g>
+
+                                <g>
+                                    <rect x="64" y="122" width="52" height="14" rx="7" fill="url(#copperMetal)"/>
+                                    <rect x="64" y="274" width="52" height="14" rx="7" fill="url(#copperMetal)"/>
+                                    <circle cx="90" cy="112" r="12" fill="#D97736"/>
+                                    <circle cx="90" cy="296" r="10" fill="#D97736"/>
+                                    <rect x="74" y="135" width="32" height="140" rx="4" fill="#F4F4F6"/>
+                                    <g clip-path="url(#poleClip)">
+                                        <g class="barber-pole-stripes">
+                                            <path d="M60,120 L120,150 M60,148 L120,178 M60,176 L120,206 M60,204 L120,234 M60,232 L120,262 M60,260 L120,290 M60,288 L120,318" stroke="#D97736" stroke-width="9"/>
+                                            <path d="M60,134 L120,164 M60,162 L120,192 M60,190 L120,220 M60,218 L120,248 M60,246 L120,276 M60,274 L120,304" stroke="#2A9D8F" stroke-width="9"/>
+                                        </g>
+                                    </g>
+                                </g>
+
+                                <g transform="translate(510, 120)">
+                                    <rect x="0" y="0" width="76" height="122" rx="14" fill="#181B22" stroke="#2A9D8F" stroke-width="2.5"/>
+                                    <circle cx="38" cy="36" r="14" fill="#0F1115" stroke="#D97736" stroke-width="2"/>
+                                    <circle cx="38" cy="36" r="5" fill="#D97736"/>
+                                    <circle cx="38" cy="84" r="24" fill="#0F1115" stroke="#2A9D8F" stroke-width="2.5"/>
+                                    <circle cx="38" cy="84" r="9" fill="#2A9D8F"/>
+                                </g>
+                                <g class="music-note-1" transform="translate(475, 85)" fill="#2A9D8F">
+                                    <circle cx="0" cy="18" r="5"/>
+                                    <circle cx="16" cy="14" r="5"/>
+                                    <path d="M4,18 L4,2 L20,-2 L20,14" fill="none" stroke="#2A9D8F" stroke-width="3"/>
+                                </g>
+                                <g class="music-note-2" transform="translate(545, 72)" fill="#E58A4A">
+                                    <circle cx="0" cy="16" r="5"/>
+                                    <path d="M4,16 L4,0 L14,4" fill="none" stroke="#E58A4A" stroke-width="3" stroke-linecap="round"/>
+                                </g>
+
+                                <g transform="translate(145, 295)">
+                                    <rect x="0" y="18" width="350" height="14" rx="6" fill="#252A36" stroke="#D97736" stroke-width="1.5"/>
+                                    <g transform="translate(42, -16)">
+                                        <rect x="0" y="6" width="18" height="28" rx="4" fill="#D97736"/>
+                                        <rect x="2" y="0" width="14" height="7" rx="1" fill="#F4F4F6"/>
+                                        <line x1="4" y1="0" x2="4" y2="4" stroke="#0F1115" stroke-width="1.5"/>
+                                        <line x1="9" y1="0" x2="9" y2="4" stroke="#0F1115" stroke-width="1.5"/>
+                                        <line x1="14" y1="0" x2="14" y2="4" stroke="#0F1115" stroke-width="1.5"/>
+                                    </g>
+                                    <g transform="translate(82, -20)">
+                                        <rect x="2" y="12" width="16" height="26" rx="5" fill="#2A9D8F"/>
+                                        <path d="M6,12 L6,4 L18,4 L14,8" fill="none" stroke="#F4F4F6" stroke-width="2.5" stroke-linecap="round"/>
+                                    </g>
+                                    <g transform="translate(265, -22)">
+                                        <polygon points="2,8 22,8 19,40 5,40" fill="#2A9D8F" opacity="0.85" stroke="#F4F4F6" stroke-width="1.5"/>
+                                        <rect x="6" y="14" width="5" height="5" rx="1" fill="#F4F4F6" opacity="0.8"/>
+                                        <rect x="12" y="20" width="5" height="5" rx="1" fill="#F4F4F6" opacity="0.8"/>
+                                        <line x1="15" y1="12" x2="23" y2="-4" stroke="#E58A4A" stroke-width="2.5" stroke-linecap="round"/>
+                                    </g>
+                                    <g transform="translate(302, -4)">
+                                        <path d="M0,4 L20,4 L17,22 L3,22 Z" fill="#F4F4F6"/>
+                                        <path d="M20,7 C26,7 26,17 19,17" fill="none" stroke="#F4F4F6" stroke-width="2.5"/>
+                                    </g>
+                                </g>
+
+                                <g transform="translate(320, 345)">
+                                    <ellipse cx="0" cy="96" rx="68" ry="14" fill="#252A36" stroke="#D97736" stroke-width="3"/>
+                                    <rect x="-14" y="48" width="28" height="48" fill="url(#copperMetal)"/>
+                                    <path d="M-42,58 L42,58 L52,82 L-52,82 Z" fill="none" stroke="#A1A8B8" stroke-width="4" stroke-linejoin="round"/>
+                                    <rect x="-46" y="78" width="92" height="10" rx="4" fill="#D97736"/>
+                                    <rect x="-64" y="22" width="128" height="28" rx="12" fill="#181B22" stroke="#D97736" stroke-width="3"/>
+                                    <rect x="-54" y="-68" width="108" height="86" rx="18" fill="#181B22" stroke="#D97736" stroke-width="3"/>
+                                    <line x1="-22" y1="-55" x2="-22" y2="5" stroke="#2A9D8F" stroke-width="2" opacity="0.6"/>
+                                    <line x1="22" y1="-55" x2="22" y2="5" stroke="#2A9D8F" stroke-width="2" opacity="0.6"/>
+                                    <rect x="-26" y="-96" width="52" height="22" rx="9" fill="#222630" stroke="#E58A4A" stroke-width="2.5"/>
+                                    <line x1="-10" y1="-74" x2="-10" y2="-68" stroke="#A1A8B8" stroke-width="4"/>
+                                    <line x1="10" y1="-74" x2="10" y2="-68" stroke="#A1A8B8" stroke-width="4"/>
+                                    <rect x="-78" y="-12" width="16" height="44" rx="8" fill="url(#copperMetal)"/>
+                                    <rect x="62" y="-12" width="16" height="44" rx="8" fill="url(#copperMetal)"/>
+                                </g>
+                            </svg>
+
+                            <div class="bg-charcoal/95 px-6 py-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-2">
+                                <div>
+                                    <p class="font-display font-bold text-base sm:text-lg text-creamWhite">קובי בן חיים • סטייל, דיוק ואווירה טובה</p>
+                                    <p class="text-xs text-silverMuted">גברים, חיילים וילדים • רחוב השישה עשר, פסגת זאב, ירושלים</p>
+                                </div>
+                                <span class="px-3.5 py-1.5 rounded-full bg-emeraldMuted/20 text-emeraldMuted border border-emeraldMuted/40 text-xs font-extrabold">
+                                    מוזיקה • קפה • שתייה קרה
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="py-20 bg-graphite border-y border-white/10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto space-y-4 mb-14">
+                    <span class="inline-block px-4 py-1.5 rounded-full bg-copper/15 text-copperHover font-bold text-sm border border-copper/30">
+                        הווייב של המספרה
+                    </span>
+                    <h2 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-creamWhite">
+                        הרבה מעבר לכיסא ומספריים
+                    </h2>
+                    <p class="text-silverMuted text-lg">
+                        בנינו ברחוב השישה עשר מקום שגברים וילדים אוהבים להגיע אליו – בלי לחץ, עם אנרגיות טובות ויחס אישי לכל לקוח.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-7">
+                    <div class="bg-charcoal rounded-3xl p-7 border border-white/10 hover:border-copper/50 transition-all shadow-card-dark group">
+                        <div class="w-16 h-16 rounded-2xl bg-graphiteLight border border-white/10 flex items-center justify-center mb-6 group-hover:scale-105 transition-transform">
+                            <svg class="w-9 h-9" viewBox="0 0 48 48" fill="none">
+                                <rect x="6" y="14" width="36" height="24" rx="6" stroke="#D97736" stroke-width="2.5"/>
+                                <circle cx="17" cy="26" r="6" stroke="#2A9D8F" stroke-width="2.5"/>
+                                <circle cx="31" cy="26" r="6" stroke="#2A9D8F" stroke-width="2.5"/>
+                                <path d="M18 10L24 6L30 10" stroke="#E58A4A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-display font-bold text-xl text-creamWhite mb-2.5">מוזיקה טובה ואווירה כיפית</h3>
+                        <p class="text-silverMuted text-sm leading-relaxed">
+                            פלייליסטים שמתנגנים ברקע ומרימים את האווירה, שיחה טובה ואנרגיה משוחררת שהופכת את הזמן על הכיסא לחלק הכי כיפי ביום.
+                        </p>
+                    </div>
+
+                    <div class="bg-charcoal rounded-3xl p-7 border border-white/10 hover:border-emeraldMuted/50 transition-all shadow-card-dark group">
+                        <div class="w-16 h-16 rounded-2xl bg-graphiteLight border border-white/10 flex items-center justify-center mb-6 group-hover:scale-105 transition-transform">
+                            <svg class="w-9 h-9" viewBox="0 0 48 48" fill="none">
+                                <path d="M14 16H32L29 38H17L14 16Z" stroke="#2A9D8F" stroke-width="2.5" stroke-linejoin="round"/>
+                                <line x1="25" y1="16" x2="31" y2="8" stroke="#D97736" stroke-width="2.5" stroke-linecap="round"/>
+                                <rect x="19" y="22" width="5" height="5" rx="1" fill="#F4F4F6" opacity="0.75"/>
+                                <rect x="24" y="28" width="5" height="5" rx="1" fill="#F4F4F6" opacity="0.75"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-display font-bold text-xl text-creamWhite mb-2.5">שתייה קרה וקפה עלינו</h3>
+                        <p class="text-silverMuted text-sm leading-relaxed">
+                            הגעתם קצת לפני התור? תתפנקו בכוס שתייה קרה ומרעננת או באספרסו איכותי על חשבון הבית בזמן שאתם נרגעים.
+                        </p>
+                    </div>
+
+                    <div class="bg-charcoal rounded-3xl p-7 border border-white/10 hover:border-copper/50 transition-all shadow-card-dark group">
+                        <div class="w-16 h-16 rounded-2xl bg-graphiteLight border border-white/10 flex items-center justify-center mb-6 group-hover:scale-105 transition-transform">
+                            <svg class="w-9 h-9" viewBox="0 0 48 48" fill="none">
+                                <circle cx="24" cy="24" r="16" stroke="#E58A4A" stroke-width="2.5"/>
+                                <circle cx="19" cy="21" r="2" fill="#F4F4F6"/>
+                                <circle cx="29" cy="21" r="2" fill="#F4F4F6"/>
+                                <path d="M18 28C20 31.5 28 31.5 30 28" stroke="#2A9D8F" stroke-width="2.5" stroke-linecap="round"/>
+                                <path d="M19 8L24 12L29 8" stroke="#D97736" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-display font-bold text-xl text-creamWhite mb-2.5">גישה מיוחדת לילדים</h3>
+                        <p class="text-silverMuted text-sm leading-relaxed">
+                            סבלנות, חיוך ואווירה קלילה שגורמת לילדים להתלהב מתספורת! מתאים גם לתספורות ראשונות וגם לילדים שאוהבים סטייל של גדולים.
+                        </p>
+                    </div>
+
+                    <div class="bg-charcoal rounded-3xl p-7 border border-white/10 hover:border-emeraldMuted/50 transition-all shadow-card-dark group">
+                        <div class="w-16 h-16 rounded-2xl bg-graphiteLight border border-white/10 flex items-center justify-center mb-6 group-hover:scale-105 transition-transform">
+                            <svg class="w-9 h-9" viewBox="0 0 48 48" fill="none">
+                                <rect x="16" y="14" width="16" height="24" rx="4" stroke="#D97736" stroke-width="2.5"/>
+                                <path d="M18 14V9H30V14" stroke="#F4F4F6" stroke-width="2.5"/>
+                                <line x1="21" y1="9" x2="21" y2="12" stroke="#F4F4F6" stroke-width="2"/>
+                                <line x1="24" y1="9" x2="24" y2="12" stroke="#F4F4F6" stroke-width="2"/>
+                                <line x1="27" y1="9" x2="27" y2="12" stroke="#F4F4F6" stroke-width="2"/>
+                                <circle cx="24" cy="26" r="2.5" fill="#2A9D8F"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-display font-bold text-xl text-creamWhite mb-2.5">דיוק בכל פייד וזקן</h3>
+                        <p class="text-silverMuted text-sm leading-relaxed">
+                            מעברים חלקים (Skin Fade / Taper), עבודת מספריים מוקפדת, קווי מתאר נקיים ועיצוב זקן שמותאם בדיוק למבנה הפנים שלכם.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="barber-pricing" class="py-20 bg-charcoal">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto space-y-4 mb-14">
+                    <span class="inline-block px-4 py-1.5 rounded-full bg-emeraldMuted/15 text-emeraldMuted font-bold text-sm border border-emeraldMuted/30">
+                        תפריט תספורות ומחירון שקוף
+                    </span>
+                    <h2 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-creamWhite">
+                        מה אנחנו מספרים אצל קובי?
+                    </h2>
+                    <p class="text-silverMuted text-lg">
+                        בחרו את הטיפול המתאים לכם ולחצו לקביעת תור מהירה – השירות ייבחר אוטומטית בטופס למטה.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-graphite rounded-3xl overflow-hidden border border-white/10 hover:border-copper/60 transition-all flex flex-col justify-between shadow-card-dark group">
+                        <div>
+                            <div class="bg-graphiteLight border-b border-white/10 relative">
+                                <span class="absolute top-3.5 right-3.5 bg-copper text-charcoal text-xs font-extrabold px-3 py-1 rounded-full">
+                                    הכי מבוקש
+                                </span>
+                                <svg viewBox="0 0 400 210" class="w-full h-48 block" role="img" aria-label="איור של תספורת גברים ופייד מדויק עם מכונת תספורת ומספריים">
+                                    <rect width="400" height="210" fill="#1E222B"/>
+                                    <circle cx="200" cy="105" r="76" fill="#14171F" stroke="#D97736" stroke-width="2" stroke-dasharray="6 5"/>
+                                    <path d="M172,145 C172,125 168,108 168,90 C168,62 186,48 208,48 C228,48 240,62 238,85 L244,102 L235,108 L234,126 C234,134 226,138 216,138 L212,155 L178,155 Z" fill="#2A303D" stroke="#F4F4F6" stroke-width="2.5"/>
+                                    <path d="M167,85 C163,60 182,40 214,42 C234,43 245,54 242,68 C226,64 202,65 186,78 Z" fill="#D97736"/>
+                                    <line x1="174" y1="92" x2="192" y2="92" stroke="#2A9D8F" stroke-width="2.5" stroke-linecap="round"/>
+                                    <line x1="175" y1="101" x2="188" y2="101" stroke="#2A9D8F" stroke-width="2" stroke-linecap="round" opacity="0.75"/>
+                                    <line x1="176" y1="110" x2="185" y2="110" stroke="#2A9D8F" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+                                    <g transform="translate(122, 85) rotate(-25)">
+                                        <rect x="0" y="6" width="22" height="38" rx="5" fill="#E58A4A"/>
+                                        <rect x="3" y="0" width="16" height="7" fill="#F4F4F6"/>
+                                    </g>
+                                </svg>
+                            </div>
+                            <div class="p-6">
+                                <div class="flex items-baseline justify-between gap-2 mb-2">
+                                    <h3 class="font-display font-bold text-xl text-creamWhite">תספורת גברים / פייד</h3>
+                                    <span class="font-display font-black text-2xl text-copper">70 ₪</span>
+                                </div>
+                                <p class="text-silverMuted text-sm leading-relaxed">
+                                    תספורת קלאסית או מודרנית, Skin Fade / Taper מדויק, עבודת מספריים נקייה, שטיפה וסטיילינג מקצועי.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6">
+                            <a href="#booking" onclick="selectService('תספורת גברים / פייד (70 ₪)')" class="block w-full text-center py-3 rounded-xl bg-charcoal hover:bg-copper text-creamWhite hover:text-charcoal font-bold text-sm border border-white/15 hover:border-copper transition-colors">
+                                קביעת תור לתספורת גברים
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="bg-graphite rounded-3xl overflow-hidden border-2 border-copper transition-all flex flex-col justify-between shadow-copper-glow group">
+                        <div>
+                            <div class="bg-graphiteLight border-b border-white/10 relative">
+                                <span class="absolute top-3.5 right-3.5 bg-emeraldMuted text-charcoal text-xs font-extrabold px-3 py-1 rounded-full">
+                                    חבילת הפרימיום
+                                </span>
+                                <svg viewBox="0 0 400 210" class="w-full h-48 block" role="img" aria-label="איור של תספורת גברים ועיצוב זקן עם תער מסורתי ומגבת חמה">
+                                    <rect width="400" height="210" fill="#1E222B"/>
+                                    <circle cx="200" cy="105" r="76" fill="#14171F" stroke="#2A9D8F" stroke-width="2"/>
+                                    <path d="M174,145 L174,90 C174,64 190,50 210,50 C228,50 238,62 236,84 L242,100 L234,106 L234,128 C234,138 222,144 206,144 L204,156 L174,156 Z" fill="#2A303D" stroke="#F4F4F6" stroke-width="2.5"/>
+                                    <path d="M172,82 C170,56 188,42 216,44 C234,45 242,56 239,68 C222,64 196,66 172,82 Z" fill="#D97736"/>
+                                    <path d="M196,108 L234,108 L234,128 C234,139 221,145 204,144 L196,134 Z" fill="#D97736"/>
+                                    <g transform="translate(262, 72) rotate(25)">
+                                        <rect x="0" y="0" width="46" height="9" rx="4" fill="#E58A4A"/>
+                                        <path d="M4,9 L44,24 L40,30 L2,13 Z" fill="#F4F4F6"/>
+                                    </g>
+                                </svg>
+                            </div>
+                            <div class="p-6">
+                                <div class="flex items-baseline justify-between gap-2 mb-2">
+                                    <h3 class="font-display font-bold text-xl text-creamWhite">תספורת + עיצוב זקן</h3>
+                                    <span class="font-display font-black text-2xl text-copper">100 ₪</span>
+                                </div>
+                                <p class="text-silverMuted text-sm leading-relaxed">
+                                    השילוב המושלם: תספורת מלאה + פיסול ודירוג זקן, קווי לחיים וצוואר חדים בתער ומגבת חמה ומרגיעה.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6">
+                            <a href="#booking" onclick="selectService('תספורת גברים + עיצוב זקן (100 ₪)')" class="block w-full text-center py-3.5 rounded-xl bg-copper hover:bg-copperHover text-charcoal font-extrabold text-sm shadow-md transition-colors">
+                                קביעת תור לתספורת וזקן
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="bg-graphite rounded-3xl overflow-hidden border border-white/10 hover:border-copper/60 transition-all flex flex-col justify-between shadow-card-dark group">
+                        <div>
+                            <div class="bg-graphiteLight border-b border-white/10 relative">
+                                <span class="absolute top-3.5 right-3.5 bg-copperHover text-charcoal text-xs font-extrabold px-3 py-1 rounded-full">
+                                    באהבה וסבלנות
+                                </span>
+                                <svg viewBox="0 0 400 210" class="w-full h-48 block" role="img" aria-label="איור של תספורת ילדים בסטייל עם מספריים וכוכבים">
+                                    <rect width="400" height="210" fill="#1E222B"/>
+                                    <circle cx="200" cy="105" r="76" fill="#14171F" stroke="#E58A4A" stroke-width="2" stroke-dasharray="5 5"/>
+                                    <circle cx="200" cy="112" r="34" fill="#2A303D" stroke="#F4F4F6" stroke-width="2.5"/>
+                                    <path d="M166,104 L172,74 L186,86 L198,66 L210,84 L224,72 L234,104 C220,94 180,94 166,104 Z" fill="#2A9D8F" stroke="#F4F4F6" stroke-width="2" stroke-linejoin="round"/>
+                                    <path d="M190,120 Q200,130 210,120" fill="none" stroke="#E58A4A" stroke-width="2.5" stroke-linecap="round"/>
+                                    <polygon points="135,70 138,78 146,78 140,83 142,91 135,86 128,91 130,83 124,78 132,78" fill="#D97736"/>
+                                    <polygon points="265,75 267,81 273,81 268,85 270,91 265,87 260,91 262,85 257,81 263,81" fill="#2A9D8F"/>
+                                </svg>
+                            </div>
+                            <div class="p-6">
+                                <div class="flex items-baseline justify-between gap-2 mb-2">
+                                    <h3 class="font-display font-bold text-xl text-creamWhite">תספורת ילדים (עד 13)</h3>
+                                    <span class="font-display font-black text-2xl text-copper">55 ₪</span>
+                                </div>
+                                <p class="text-silverMuted text-sm leading-relaxed">
+                                    תספורת מעוצבת וכיפית לילדים עם המון סבלנות, חיוך, כיסא מותאם ויציאה עם סטייל של גדולים.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6">
+                            <a href="#booking" onclick="selectService('תספורת ילדים (55 ₪)')" class="block w-full text-center py-3 rounded-xl bg-charcoal hover:bg-copper text-creamWhite hover:text-charcoal font-bold text-sm border border-white/15 hover:border-copper transition-colors">
+                                קביעת תור לילד
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-10 bg-graphite rounded-3xl p-6 sm:p-8 border border-white/10 shadow-card-dark">
+                    <h3 class="font-display font-bold text-xl text-creamWhite mb-6 flex items-center gap-2.5">
+                        <span class="w-2.5 h-2.5 rounded-full bg-copper"></span>
+                        <span>טיפולים וחבילות נוספות במספרה</span>
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                        <div class="bg-charcoal p-5 rounded-2xl border border-white/10 flex items-center justify-between gap-4">
+                            <div>
+                                <p class="font-display font-bold text-lg text-creamWhite">חבילת אב ובן</p>
+                                <p class="text-xs text-silverMuted mt-0.5">זמן איכות משותף + 2 תספורות</p>
+                            </div>
+                            <div class="text-left shrink-0">
+                                <span class="block font-display font-black text-xl text-copper">115 ₪</span>
+                                <a href="#booking" onclick="selectService('חבילת אב ובן (115 ₪)')" class="text-xs font-bold text-emeraldMuted hover:underline">לבחירה &larr;</a>
+                            </div>
+                        </div>
+
+                        <div class="bg-charcoal p-5 rounded-2xl border border-white/10 flex items-center justify-between gap-4">
+                            <div>
+                                <p class="font-display font-bold text-lg text-creamWhite">עיצוב וסידור זקן</p>
+                                <p class="text-xs text-silverMuted mt-0.5">דירוג, קווי תער ומגבת חמה</p>
+                            </div>
+                            <div class="text-left shrink-0">
+                                <span class="block font-display font-black text-xl text-copper">45 ₪</span>
+                                <a href="#booking" onclick="selectService('עיצוב וסידור זקן (45 ₪)')" class="text-xs font-bold text-emeraldMuted hover:underline">לבחירה &larr;</a>
+                            </div>
+                        </div>
+
+                        <div class="bg-charcoal p-5 rounded-2xl border border-white/10 flex items-center justify-between gap-4">
+                            <div>
+                                <p class="font-display font-bold text-lg text-creamWhite">תספורת חיילים / נוער</p>
+                                <p class="text-xs text-silverMuted mt-0.5">דיוק מקסימלי במחיר מיוחד</p>
+                            </div>
+                            <div class="text-left shrink-0">
+                                <span class="block font-display font-black text-xl text-copper">60 ₪</span>
+                                <a href="#booking" onclick="selectService('תספורת חיילים / נוער (60 ₪)')" class="text-xs font-bold text-emeraldMuted hover:underline">לבחירה &larr;</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="hours-location" class="py-20 bg-graphite border-t border-white/10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
+                    <div class="lg:col-span-6 bg-charcoal rounded-3xl p-8 border border-white/10 shadow-card-dark flex flex-col justify-between">
+                        <div>
+                            <span class="inline-block px-3.5 py-1 rounded-full bg-copper/15 text-copperHover text-xs font-bold mb-3">
+                                זמני פעילות
+                            </span>
+                            <h2 class="font-display font-extrabold text-3xl text-creamWhite mb-6">
+                                שעות פתיחה
+                            </h2>
+
+                            <div class="space-y-4">
+                                <div class="flex items-center justify-between py-3.5 border-b border-white/10">
+                                    <span class="font-bold text-creamWhite text-base sm:text-lg">ימים א' – ה'</span>
+                                    <span class="font-display font-bold text-copperHover text-lg" dir="ltr">09:30 – 20:00</span>
+                                </div>
+                                <div class="flex items-center justify-between py-3.5 border-b border-white/10">
+                                    <span class="font-bold text-creamWhite text-base sm:text-lg">יום ו' וערבי חג</span>
+                                    <span class="font-display font-bold text-copperHover text-lg" dir="ltr">08:30 – 14:30</span>
+                                </div>
+                                <div class="flex items-center justify-between py-3.5">
+                                    <span class="font-bold text-silverMuted text-base sm:text-lg">שבת וחג</span>
+                                    <span class="px-3 py-1 rounded-lg bg-white/5 text-silverMuted text-sm font-bold">סגור</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-8 p-4 rounded-2xl bg-graphiteLight border border-emeraldMuted/30 flex items-center gap-3">
+                            <span class="w-3 h-3 rounded-full bg-emeraldMuted shrink-0"></span>
+                            <p class="text-sm text-creamWhite/90">
+                                מומלץ לשריין תור מראש כדי להיכנס בדיוק בזמן שלכם – בלי המתנה מיותרת!
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-6 bg-charcoal rounded-3xl p-8 border border-white/10 shadow-card-dark flex flex-col justify-between">
+                        <div>
+                            <span class="inline-block px-3.5 py-1 rounded-full bg-emeraldMuted/15 text-emeraldMuted text-xs font-bold mb-3">
+                                איך מגיעים?
+                            </span>
+                            <h2 class="font-display font-extrabold text-3xl text-creamWhite mb-3">
+                                רחוב השישה עשר, פסגת זאב, ירושלים
+                            </h2>
+                            <p class="text-silverMuted text-base leading-relaxed mb-6">
+                                מיקום מרכזי ונוח בשכונת פסגת זאב בירושלים, עם גישה נוחה וחניה קרובה.
+                            </p>
+
+                            <div class="rounded-2xl overflow-hidden border border-white/10 bg-graphiteLight mb-6">
+                                <svg viewBox="0 0 460 175" class="w-full h-44 block" role="img" aria-label="מפה סכמטית של מיקום המספרה ברחוב השישה עשר בירושלים">
+                                    <rect width="460" height="175" fill="#181C24"/>
+                                    <path d="M0,45 L460,65" stroke="#282E3B" stroke-width="10"/>
+                                    <path d="M0,125 L460,115" stroke="#282E3B" stroke-width="12"/>
+                                    <path d="M135,0 L165,175" stroke="#282E3B" stroke-width="10"/>
+                                    <path d="M310,0 L285,175" stroke="#282E3B" stroke-width="10"/>
+                                    <path d="M40,92 L420,92" stroke="#D97736" stroke-width="5" stroke-dasharray="10 6"/>
+                                    <g transform="translate(230, 86)">
+                                        <circle cx="0" cy="6" r="24" fill="#D97736" opacity="0.22"/>
+                                        <path d="M0,-34 C-13,-34 -22,-24 -22,-12 C-22,4 0,22 0,22 C0,22 22,4 22,-12 C22,-24 13,-34 0,-34 Z" fill="#D97736"/>
+                                        <circle cx="0" cy="-13" r="7" fill="#0F1115"/>
+                                    </g>
+                                    <rect x="135" y="136" width="190" height="28" rx="8" fill="#0F1115" stroke="#D97736" stroke-width="1.5"/>
+                                    <text x="230" y="155" text-anchor="middle" fill="#F4F4F6" font-family="Heebo, sans-serif" font-weight="700" font-size="13">קובי בן חיים • רח׳ השישה עשר</text>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <a href="https://waze.com/ul?q=%D7%94%D7%A9%D7%99%D7%A9%D7%94%20%D7%A2%D7%A9%D7%A8%20%D7%99%D7%A8%D7%95%D7%A9%D7%9C%D7%99%D7%9D" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 py-3.5 px-5 rounded-xl bg-graphiteLight hover:bg-emeraldMuted text-creamWhite hover:text-charcoal font-bold text-sm border border-white/15 transition-colors">
+                                <span>ניווט מהיר ב-Waze</span>
+                            </a>
+                            <a href="https://maps.google.com/?q=%D7%94%D7%A9%D7%99%D7%A9%D7%94+%D7%A2%D7%A9%D7%A8+%D7%99%D7%A8%D7%95%D7%A9%D7%9C%D7%99%D7%9D" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 py-3.5 px-5 rounded-xl bg-graphiteLight hover:bg-copper text-creamWhite hover:text-charcoal font-bold text-sm border border-white/15 transition-colors">
+                                <span>פתיחה ב-Google Maps</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="booking" class="py-20 bg-charcoal border-t border-white/10 relative overflow-hidden">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+                <div class="text-center space-y-3 mb-10">
+                    <span class="inline-block px-4 py-1.5 rounded-full bg-copper/15 text-copperHover font-bold text-sm border border-copper/30">
+                        שריון כיסא אצל קובי
+                    </span>
+                    <h2 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-creamWhite">
+                        קביעת תור לתספורת
+                    </h2>
+                    <p class="text-silverMuted text-lg">
+                        מלאו את הפרטים ונאשר לכם את התור מיד – תבואו בכיף, הקפה והשתייה הקרה כבר מתקררים!
+                    </p>
+                </div>
+
+                <form id="barber-booking-form" novalidate class="bg-graphite p-7 sm:p-10 rounded-3xl border border-white/15 shadow-card-dark space-y-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                        <div>
+                            <label for="clientName" class="block text-sm font-bold text-creamWhite mb-2">שם מלא *</label>
+                            <input type="text" id="clientName" name="clientName" required placeholder="לדוגמה: עומר מזרחי"
+                                class="w-full px-4 py-3.5 rounded-xl bg-charcoal border border-white/15 text-creamWhite placeholder-silverMuted/50 focus:border-copper focus:ring-2 focus:ring-copper/25 outline-none transition-all">
+                            <p id="clientNameError" class="hidden text-xs text-red-400 font-semibold mt-1.5">נא להזין שם מלא</p>
+                        </div>
+
+                        <div>
+                            <label for="clientPhone" class="block text-sm font-bold text-creamWhite mb-2">טלפון נייד *</label>
+                            <input type="tel" id="clientPhone" name="clientPhone" required placeholder="050-0000000" dir="ltr"
+                                class="w-full px-4 py-3.5 rounded-xl bg-charcoal border border-white/15 text-creamWhite placeholder-silverMuted/50 focus:border-copper focus:ring-2 focus:ring-copper/25 outline-none transition-all text-right">
+                            <p id="clientPhoneError" class="hidden text-xs text-red-400 font-semibold mt-1.5">נא להזין מספר טלפון תקין</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                        <div>
+                            <label for="serviceSelect" class="block text-sm font-bold text-creamWhite mb-2">סוג תספורת / שירות</label>
+                            <select id="serviceSelect" name="serviceSelect"
+                                class="w-full px-4 py-3.5 rounded-xl bg-charcoal border border-white/15 text-creamWhite focus:border-copper focus:ring-2 focus:ring-copper/25 outline-none transition-all">
+                                <option value="תספורת גברים / פייד (70 ₪)">תספורת גברים / פייד (70 ₪)</option>
+                                <option value="תספורת גברים + עיצוב זקן (100 ₪)">תספורת גברים + עיצוב זקן (100 ₪)</option>
+                                <option value="תספורת ילדים (55 ₪)">תספורת ילדים עד גיל 13 (55 ₪)</option>
+                                <option value="חבילת אב ובן (115 ₪)">חבילת אב ובן (115 ₪)</option>
+                                <option value="עיצוב וסידור זקן (45 ₪)">עיצוב וסידור זקן בלבד (45 ₪)</option>
+                                <option value="תספורת חיילים / נוער (60 ₪)">תספורת חיילים / נוער (60 ₪)</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="preferredTime" class="block text-sm font-bold text-creamWhite mb-2">יום ושעה מועדפים</label>
+                            <input type="text" id="preferredTime" name="preferredTime" placeholder="לדוגמה: יום חמישי אחה״צ / שישי בבוקר"
+                                class="w-full px-4 py-3.5 rounded-xl bg-charcoal border border-white/15 text-creamWhite placeholder-silverMuted/50 focus:border-copper focus:ring-2 focus:ring-copper/25 outline-none transition-all">
+                        </div>
+                    </div>
 
                     <div>
-                        <label class="block text-sm font-bold text-stone-700 mb-1">שם מלא</label>
-                        <input type="text" name="name" required class="w-full px-4 py-3 rounded-xl border border-stone-300 focus:border-emerald-600 focus:outline-none text-sm bg-stone-50 text-stone-900" placeholder="השם שלך">
+                        <label for="drinkPref" class="block text-sm font-bold text-creamWhite mb-2">מה לפנק אתכם כשתגיעו? (על חשבון הבית)</label>
+                        <select id="drinkPref" name="drinkPref"
+                            class="w-full px-4 py-3.5 rounded-xl bg-charcoal border border-white/15 text-creamWhite focus:border-emeraldMuted focus:ring-2 focus:ring-emeraldMuted/25 outline-none transition-all">
+                            <option value="שתייה קרה ומרעננת">שתייה קרה ומרעננת</option>
+                            <option value="אספרסו / קפה שחור">אספרסו / קפה שחור</option>
+                            <option value="מים קרים">מים קרים</option>
+                            <option value="הפתעה לילד">פינוק מתוק לילד</option>
+                        </select>
                     </div>
-                    <div>
-                        <label class="block text-sm font-bold text-stone-700 mb-1">אימייל לחזרה</label>
-                        <input type="email" name="email" required class="w-full px-4 py-3 rounded-xl border border-stone-300 focus:border-emerald-600 focus:outline-none text-sm bg-stone-50 text-stone-900" placeholder="name@example.com" dir="ltr">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-bold text-stone-700 mb-1">טלפון נייד</label>
-                        <input type="tel" name="phone" required class="w-full px-4 py-3 rounded-xl border border-stone-300 focus:border-emerald-600 focus:outline-none text-sm bg-stone-50 text-stone-900" placeholder="054-5800802" dir="ltr">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-bold text-stone-700 mb-1">איזה פרויקט תרצה שנבנה?</label>
-                        <textarea name="message" rows="4" required class="w-full px-4 py-3 rounded-xl border border-stone-300 focus:border-emerald-600 focus:outline-none text-sm bg-stone-50 text-stone-900" placeholder="ספר בקצרה על העסק או הרעיון שלך..."></textarea>
-                    </div>
-                    <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white py-3.5 rounded-xl font-bold text-sm transition-all shadow-sm">
-                        צור קשר
+
+                    <button type="submit" class="w-full bg-copper hover:bg-copperHover text-charcoal font-extrabold text-lg py-4 px-8 rounded-2xl shadow-copper-glow transition-all transform hover:-translate-y-0.5 cursor-pointer">
+                        שליחת בקשה לקביעת תור
                     </button>
-                    <p id="form-status" class="text-center text-sm font-medium hidden"></p>
                 </form>
             </div>
         </section>
-    </main>
 
-    <!-- Footer -->
-    <footer class="border-t border-stone-200 bg-white py-8 text-center text-sm text-stone-500 space-y-2">
-        <p>© 2026 SD Creative · שמואל דזבינסקי. כל הזכויות שמורות.</p>
-        <p class="space-x-4 space-x-reverse text-stone-700">
-            <a href="books-landing.html" class="hover:text-emerald-700 underline">דף נחיתה – ספרים</a>
-            <span>·</span>
-            <a href="tel:+972545800802" dir="ltr" class="hover:text-emerald-700">054-5800802</a>
-            <span>·</span>
-            <a href="mailto:shmulikdge@gmail.com" class="hover:text-emerald-700">shmulikdge@gmail.com</a>
-        </p>
-    </footer>
+        <footer class="bg-[#090A0D] text-silverMuted py-10 border-t border-white/10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm">
+                <div>
+                    <p class="font-display font-extrabold text-lg text-creamWhite">קובי בן חיים • BARBERSHOP</p>
+                    <p class="text-xs text-silverMuted/80 mt-1">מספרת גברים וילדים • רחוב השישה עשר, פסגת זאב, ירושלים</p>
+                </div>
+                <div class="flex flex-wrap items-center gap-4 text-xs">
+                    <button type="button" onclick="openRoute('')" class="underline text-copperHover hover:text-creamWhite cursor-pointer">חזרה ל-SD Creative</button>
+                    <span class="text-silverMuted/60">© <span id="year"></span> קובי בן חיים – כל הזכויות שמורות.</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- ==================== VIEW 3: ZURIT WORKSHOP LANDING PAGE ==================== -->
+    <div id="view-workshop" class="hidden bg-[#FAF6F0] text-[#2C1E16] min-h-screen">
+        <div class="ikat-divider w-full"></div>
+
+        <header class="sticky top-0 z-40 bg-[#FAF6F0]/95 backdrop-blur-md border-b border-[#F0E6D6]">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex justify-between items-center gap-3">
+                <button type="button" onclick="openRoute('')" class="inline-flex items-center gap-2 text-sm font-bold text-[#615147] hover:text-[#B84A27] transition-colors cursor-pointer">
+                    <span>← חזרה ל-SD Creative</span>
+                </button>
+
+                <div class="text-center">
+                    <span class="block font-serif-he font-bold text-xl leading-none text-[#2C1E16]">צורית</span>
+                    <span class="block text-[11px] text-[#615147]">המטבח הבוכרי ואירוח מהלב</span>
+                </div>
+
+                <a href="#ws-register" class="bg-[#B84A27] hover:bg-[#91381B] text-white font-bold px-4 py-2 rounded-full text-xs sm:text-sm transition-all">
+                    לשריון מקום
+                </a>
+            </div>
+        </header>
+
+        <section class="py-14 lg:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                <div class="lg:col-span-7 space-y-6 text-right">
+                    <span class="inline-block px-4 py-1.5 rounded-full bg-[#F0E6D6] text-[#91381B] font-bold text-xs sm:text-sm">
+                        חוויה קולינרית ביתית בפסגת זאב, ירושלים
+                    </span>
+                    <h1 class="font-serif-he font-black text-4xl sm:text-5xl lg:text-6xl text-[#2C1E16] leading-[1.15]">
+                        סודות המטבח הבוכרי <br>
+                        <span class="text-[#B84A27]">ואירוח מהלב</span> – סדנת בישול ביתי עם צורית
+                    </h1>
+                    <p class="text-lg text-[#615147] leading-relaxed max-w-2xl">
+                        בואו ללוש בצק בידיים, להריח תבלינים שנקלים ברגע זה, ללמוד את הטכניקות המדויקות שעוברות מדור לדור ולהתכנס סביב שולחן חגיגי ועשיר באווירה ירושלמית חמה ומחבקת.
+                    </p>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="bg-white px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold border border-[#F0E6D6]">כשר למהדרין</span>
+                        <span class="bg-white px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold border border-[#F0E6D6]">קבוצות קטנות ואינטימיות</span>
+                        <span class="bg-white px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold border border-[#F0E6D6]">ארוחת מלכים + חוברת מתכונים</span>
+                    </div>
+                    <div class="flex flex-wrap gap-4 pt-2">
+                        <a href="#ws-register" class="bg-[#B84A27] hover:bg-[#91381B] text-white font-bold px-7 py-3.5 rounded-2xl transition-all">
+                            לשריון מקום בסדנה
+                        </a>
+                        <a href="#ws-menu" class="bg-white hover:bg-[#F0E6D6] text-[#2C1E16] border border-[#F0E6D6] font-bold px-7 py-3.5 rounded-2xl transition-all">
+                            מה מכינים בסדנה?
+                        </a>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5">
+                    <div class="bg-[#2C1E16] text-white rounded-3xl p-7 shadow-xl border-4 border-white space-y-4">
+                        <div class="text-xs uppercase tracking-wider text-[#F3D28A] font-bold">שולחן שבת וחג מהמטבח הבוכרי</div>
+                        <h2 class="font-serif-he font-bold text-2xl">100% עבודת יד ואווירה ביתית</h2>
+                        <p class="text-sm text-[#FAF6F0]/85 leading-relaxed">
+                            דושפרה, סמסה פריכה, אושפלו בקאזאן, בחאש ירוק, מנטי מאודה וסלטים מסורתיים — הכל בהדרכה צמודה ובקצב נעים שמתאים גם למי שעובד עם בצק בפעם הראשונה.
+                        </p>
+                        <div class="grid grid-cols-2 gap-3 pt-2 text-center">
+                            <div class="bg-white/10 rounded-2xl p-3">
+                                <div class="font-bold text-xl text-[#F3D28A]">3.5–4 שעות</div>
+                                <div class="text-xs text-[#FAF6F0]/80">בישול וארוחה משותפת</div>
+                            </div>
+                            <div class="bg-white/10 rounded-2xl p-3">
+                                <div class="font-bold text-xl text-[#F3D28A]">פסגת זאב</div>
+                                <div class="text-xs text-[#FAF6F0]/80">ירושלים · חניה בשפע</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="ws-menu" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="text-center max-w-2xl mx-auto space-y-3 mb-10">
+                <h2 class="font-serif-he font-bold text-3xl sm:text-4xl text-[#2C1E16]">מה מכינים בסדנה?</h2>
+                <p class="text-[#615147]">סננו לפי קטגוריה כדי לראות את המנות המרכזיות בתפריט הסדנה:</p>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-2.5 mb-10">
+                <button type="button" data-ws-filter="all" class="ws-filter-btn px-5 py-2 rounded-full font-bold text-sm bg-[#B84A27] text-white cursor-pointer">הכל</button>
+                <button type="button" data-ws-filter="dough" class="ws-filter-btn px-5 py-2 rounded-full font-bold text-sm bg-white text-[#2C1E16] border border-[#F0E6D6] cursor-pointer">בצקים ומאפים</button>
+                <button type="button" data-ws-filter="pots" class="ws-filter-btn px-5 py-2 rounded-full font-bold text-sm bg-white text-[#2C1E16] border border-[#F0E6D6] cursor-pointer">תבשילי קדרה</button>
+                <button type="button" data-ws-filter="hosting" class="ws-filter-btn px-5 py-2 rounded-full font-bold text-sm bg-white text-[#2C1E16] border border-[#F0E6D6] cursor-pointer">אירוח וסלטים</button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <article data-ws-cat="dough" class="ws-card bg-white rounded-3xl p-6 border border-[#F0E6D6] shadow-sm space-y-2">
+                    <span class="inline-block text-xs font-bold text-[#B84A27] bg-[#FAF6F0] px-3 py-1 rounded-full">בצקים ומאפים</span>
+                    <h3 class="font-serif-he font-bold text-2xl">דושפרה (Dushpara)</h3>
+                    <p class="text-sm text-[#615147] leading-relaxed">כיסוני בצק זעירים ועדינים במילוי בשר מתובל, מקופלים בעבודת יד ומוגשים במרק צח ועשיר.</p>
+                </article>
+
+                <article data-ws-cat="dough" class="ws-card bg-white rounded-3xl p-6 border border-[#F0E6D6] shadow-sm space-y-2">
+                    <span class="inline-block text-xs font-bold text-[#B84A27] bg-[#FAF6F0] px-3 py-1 rounded-full">בצקים ומאפים</span>
+                    <h3 class="font-serif-he font-bold text-2xl">סמסה בוכרית פריכה</h3>
+                    <p class="text-sm text-[#615147] leading-relaxed">מאפה שכבות פריך במילוי בשר ובצל או דלעת מתובלת, מעוטר בשומשום וקצח.</p>
+                </article>
+
+                <article data-ws-cat="pots" class="ws-card bg-white rounded-3xl p-6 border border-[#F0E6D6] shadow-sm space-y-2">
+                    <span class="inline-block text-xs font-bold text-[#3E5C3A] bg-[#FAF6F0] px-3 py-1 rounded-full">תבשילי קדרה</span>
+                    <h3 class="font-serif-he font-bold text-2xl">אושפלו חגיגי (Oshpalov)</h3>
+                    <p class="text-sm text-[#615147] leading-relaxed">שכבות של בשר רך, גזר חתוך לרצועות, חומוס, שום שלם ואורז אחד-אחד ספוג בטעמים.</p>
+                </article>
+
+                <article data-ws-cat="pots" class="ws-card bg-white rounded-3xl p-6 border border-[#F0E6D6] shadow-sm space-y-2">
+                    <span class="inline-block text-xs font-bold text-[#3E5C3A] bg-[#FAF6F0] px-3 py-1 rounded-full">תבשילי קדרה</span>
+                    <h3 class="font-serif-he font-bold text-2xl">בחאש ירוק (Bakhsh)</h3>
+                    <p class="text-sm text-[#615147] leading-relaxed">תבשיל אורז ירוק עשיר בכוסברה, שמיר ופטרוזיליה קצוצים דק עם נתחי בשר עסיסיים.</p>
+                </article>
+
+                <article data-ws-cat="dough" class="ws-card bg-white rounded-3xl p-6 border border-[#F0E6D6] shadow-sm space-y-2">
+                    <span class="inline-block text-xs font-bold text-[#B84A27] bg-[#FAF6F0] px-3 py-1 rounded-full">בצקים ומאפים</span>
+                    <h3 class="font-serif-he font-bold text-2xl">מנטי מאודה (Manti)</h3>
+                    <p class="text-sm text-[#615147] leading-relaxed">כיסוני בצק גדולים ועסיסיים בעיצוב קלוע, מבושלים באידוי מסורתי.</p>
+                </article>
+
+                <article data-ws-cat="hosting" class="ws-card bg-white rounded-3xl p-6 border border-[#F0E6D6] shadow-sm space-y-2">
+                    <span class="inline-block text-xs font-bold text-[#2C1E16] bg-[#FAF6F0] px-3 py-1 rounded-full">אירוח וסלטים</span>
+                    <h3 class="font-serif-he font-bold text-2xl">סלטים ואמנות האירוח</h3>
+                    <p class="text-sm text-[#615147] leading-relaxed">מרקוביצה פיקנטי, סלטי עגבניות ורימונים וטיפים מעשיים לתכנון ועיצוב שולחן אירוח.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="py-12 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto space-y-3">
+            <h2 class="font-serif-he font-bold text-2xl sm:text-3xl text-center mb-6">שאלות נפוצות</h2>
+            <div class="faq-item bg-white rounded-2xl border border-[#F0E6D6] overflow-hidden">
+                <button type="button" class="faq-trigger w-full px-6 py-4 text-right font-bold flex justify-between items-center cursor-pointer">
+                    <span>האם המטבח והסדנה כשרים?</span>
+                    <span class="faq-chevron transition-transform">▾</span>
+                </button>
+                <div class="faq-answer px-6">
+                    <p class="pb-4 text-sm text-[#615147]">כן, המטבח ביתי וכשר למהדרין וכל חומרי הגלם נרכשים בהקפדה מלאה.</p>
+                </div>
+            </div>
+            <div class="faq-item bg-white rounded-2xl border border-[#F0E6D6] overflow-hidden">
+                <button type="button" class="faq-trigger w-full px-6 py-4 text-right font-bold flex justify-between items-center cursor-pointer">
+                    <span>היכן הסדנה מתקיימת?</span>
+                    <span class="faq-chevron transition-transform">▾</span>
+                </button>
+                <div class="faq-answer px-6">
+                    <p class="pb-4 text-sm text-[#615147]">הסדנה מתקיימת בבית של צורית בפסגת זאב, ירושלים, עם חניה נוחה.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="ws-register" class="py-16 px-4 sm:px-6 lg:px-8 max-w-2xl mx-auto">
+            <div class="bg-white p-8 rounded-3xl border border-[#F0E6D6] shadow-lg space-y-5">
+                <div class="text-center space-y-1">
+                    <h2 class="font-serif-he font-bold text-3xl text-[#2C1E16]">הרשמה ושריון תאריך</h2>
+                    <p class="text-sm text-[#615147]">או פנייה ישירה בוואטסאפ ל-<span dir="ltr" class="font-bold">054-5800802</span></p>
+                </div>
+
+                <form id="ws-form" action="https://api.web3forms.com/submit" method="POST" class="space-y-4">
+                    <input type="hidden" name="access_key" value="bdfbdd85-07fd-491f-9bce-2cd65f577c7c">
+                    <input type="hidden" name="subject" value="הרשמה לסדנת בישול - צורית">
+                    <input type="hidden" name="from_name" value="דף נחיתה סדנת בישול">
+
+                    <div>
+                        <label class="block text-sm font-bold mb-1">שם מלא</label>
+                        <input type="text" name="name" required class="w-full px-4 py-3 rounded-xl border border-[#F0E6D6] bg-[#FAF6F0] text-sm" placeholder="השם שלך">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold mb-1">טלפון נייד</label>
+                        <input type="tel" name="phone" required class="w-full px-4 py-3 rounded-xl border border-[#F0E6D6] bg-[#FAF6F0] text-sm" placeholder="054-5800802" dir="ltr">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold mb-1">סוג הסדנה / הערות</label>
+                        <textarea name="message" rows="3" class="w-full px-4 py-3 rounded-xl border border-[#F0E6D6] bg-[#FAF6F0] text-sm" placeholder="סדנה זוגית / חברות / אירוח מלא, כמות משתתפים ותאריך מועדף..."></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-[#B84A27] hover:bg-[#91381B] text-white font-bold py-3.5 rounded-2xl transition-all cursor-pointer">
+                        שליחת פרטים ושריון מקום
+                    </button>
+                    <p id="ws-status" class="text-center text-sm font-medium hidden"></p>
+                </form>
+
+                <div class="pt-2 text-center">
+                    <a href="https://wa.me/972545800802" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 bg-[#25D366] text-[#2C1E16] font-extrabold px-6 py-3 rounded-2xl text-sm">
+                        <span>פנייה ישירה בוואטסאפ · 054-5800802</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <footer class="bg-[#2C1E16] text-[#FAF6F0]/80 py-6 text-center text-xs space-y-2">
+            <p>צורית – סדנת בישול ביתי ואירוח מהמטבח הבוכרי · פסגת זאב, ירושלים</p>
+            <button type="button" onclick="openRoute('')" class="underline text-[#F3D28A] hover:text-white cursor-pointer">
+                חזרה לאתר SD Creative
+            </button>
+        </footer>
+    </div>
+
+    <!-- Custom Barber Confirmation Modal -->
+    <div id="bookingModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 backdrop-blur-sm p-4">
+        <div class="bg-graphite text-creamWhite rounded-3xl max-w-md w-full p-8 text-center shadow-2xl border-2 border-copper relative">
+            <div class="w-16 h-16 mx-auto rounded-2xl bg-emeraldMuted/20 text-emeraldMuted border border-emeraldMuted/40 flex items-center justify-center text-3xl font-black mb-4">
+                ✓
+            </div>
+            <h3 class="font-display font-extrabold text-2xl sm:text-3xl text-creamWhite mb-2">
+                אחלה <span id="modalName" class="text-copper"></span>, הבקשה התקבלה!
+            </h3>
+            <p class="text-silverMuted leading-relaxed mb-4 text-sm sm:text-base">
+                שריינו עבורך בקשה עבור <strong id="modalService" class="text-creamWhite"></strong>. קובי יחזור אליך בהקדם לטלפון <span id="modalPhone" class="font-bold text-copperHover" dir="ltr"></span> לאישור השעה המדויקת.
+            </p>
+            <div class="bg-charcoal rounded-xl p-3 mb-6 border border-white/10 text-xs text-emeraldMuted font-semibold">
+                הפינוק שבחרת מחכה לך במספרה: <span id="modalDrink"></span>
+            </div>
+            <button type="button" onclick="closeBookingModal()" class="w-full py-3.5 rounded-xl bg-copper hover:bg-copperHover text-charcoal font-extrabold text-base transition-colors cursor-pointer">
+                סגור ונתראה במספרה!
+            </button>
+        </div>
+    </div>
 
     <script>
-        const form = document.getElementById('contact-form');
-        const statusEl = document.getElementById('form-status');
+        const viewMain = document.getElementById('view-main');
+        const viewBarber = document.getElementById('view-barber');
+        const viewWorkshop = document.getElementById('view-workshop');
 
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            statusEl.classList.remove('hidden');
-            statusEl.className = 'text-center text-sm font-medium text-stone-600';
-            statusEl.textContent = 'שולח פנייה...';
-
-            try {
-                const res = await fetch(form.action, {
-                    method: 'POST',
-                    body: new FormData(form),
-                    headers: { 'Accept': 'application/json' }
-                });
-                const data = await res.json();
-                if (data.success) {
-                    statusEl.className = 'text-center text-sm font-bold text-emerald-700';
-                    statusEl.textContent = 'הפנייה נשלחה בהצלחה! אחזור אליך בהקדם.';
-                    form.reset();
-                } else {
-                    throw new Error(data.message || 'שגיאה בשליחה');
+        function openRoute(routeName) {
+            if (!routeName) {
+                if (window.location.hash) {
+                    history.pushState('', document.title, window.location.pathname + window.location.search);
                 }
-            } catch {
-                statusEl.className = 'text-center text-sm font-medium text-amber-700';
-                statusEl.textContent = 'אירעה תקלה בשליחה – ניתן לפנות ישירות ל-shmulikdge@gmail.com או 054-5800802.';
+            } else {
+                window.location.hash = routeName;
             }
-        });
-    </script>
+            renderRoute();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
 
+        function renderRoute() {
+            const hash = window.location.hash.replace('#', '');
+            const isBarber = hash === 'barber';
+            const isWorkshop = hash === 'workshop';
+
+            viewBarber.classList.toggle('hidden', !isBarber);
+            viewWorkshop.classList.toggle('hidden', !isWorkshop);
+            viewMain.classList.toggle('hidden', isBarber || isWorkshop);
+
+            if (isBarber) {
+                document.title = 'קובי בן חיים | ספר גברים וילדים ברחוב השישה עשר, ירושלים';
+            } else if (isWorkshop) {
+                document.title = 'סדנאות בישול ואירוח ביתי | צורית - המטבח הבוכרי';
+            } else {
+                document.title = 'SD Creative | פיתוח אתרים, מערכות ועיצוב דיגיטלי - שמואל דזבינסקי';
+            }
+        }
+
+        window.addEventListener('hashchange', renderRoute);
+        renderRoute();
+
+        // Barber year & mobile menu
+        const yearEl = document.getElementById('year');
+        if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+            document.querySelectorAll('.mobile-link').forEach(link => {
+                link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+            });
+        }
+
+        function selectService(serviceName) {
+            const selectEl = document.getElementById('serviceSelect');
+            if (selectEl) selectEl.value = serviceName;
+        }
+
+        const bookingForm = document.getElementById('barber-booking-form');
+        const bookingModal = document.getElementById('bookingModal');
+
+        if (bookingForm && bookingModal) {
+            bookingForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                const nameInput = document.getElementById('clientName');
+                const phoneInput = document.getElementById('clientPhone');
+                const serviceSelect = document.getElementById('serviceSelect');
+                const drinkPref = document.getElementById('drinkPref');
+
+                const nameError = document.getElementById('clientNameError');
+                const phoneError = document.getElementById('clientPhoneError');
+
+                let isValid = true;
+
+                if (!nameInput.value.trim() || nameInput.value.trim().length < 2) {
+                    nameError.classList.remove('hidden');
+                    nameInput.classList.add('border-red-500');
+                    isValid = false;
+                } else {
+                    nameError.classList.add('hidden');
+                    nameInput.classList.remove('border-red-500');
+                }
+
+                const cleanPhone = phoneInput.value.replace(/[\s\-()]/g, '');
+                if (!cleanPhone || cleanPhone.length < 9 || !/^\+?\d+$/.test(cleanPhone)) {
+                    phoneError.classList.remove('hidden');
+                    phoneInput.classList.add('border-red-500');
+                    isValid = false;
+                } else {
+                    phoneError.classList.add('hidden');
+                    phoneInput.classList.remove('border-red-500');
+                }
+
+                if (isValid) {
+                    document.getElementById('modalName').textContent = nameInput.value.trim();
+                    document.getElementById('modalPhone').textContent = phoneInput.value.trim();
+                    document.getElementById('modalService').textContent = serviceSelect.value;
+                    document.getElementById('modalDrink').textContent = drinkPref.value;
+
+                    bookingModal.classList.remove('hidden');
+                    bookingModal.classList.add('flex');
+                    bookingForm.reset();
+                }
+            });
+
+            bookingModal.addEventListener('click', (e) => {
+                if (e.target === bookingModal) closeBookingModal();
+            });
+        }
+
+        function closeBookingModal() {
+            if (!bookingModal) return;
+            bookingModal.classList.add('hidden');
+            bookingModal.classList.remove('flex');
+        }
+
+        // Workshop filter & FAQ
+        const wsFilterBtns = document.querySelectorAll('.ws-filter-btn');
+        const wsCards = document.querySelectorAll('.ws-card');
+        wsFilterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                wsFilterBtns.forEach(b => {
+                    b.className = 'ws-filter-btn px-5 py-2 rounded-full font-bold text-sm bg-white text-[#2C1E16] border border-[#F0E6D6] cursor-pointer';
+                });
+                btn.className = 'ws-filter-btn px-5 py-2 rounded-full font-bold text-sm bg-[#B84A27] text-white cursor-pointer';
+                const cat = btn.getAttribute('data-ws-filter');
+                wsCards.forEach(card => {
+                    card.style.display = (cat === 'all' || card.getAttribute('data-ws-cat') === cat) ? 'block' : 'none';
+                });
+            });
+        });
+
+        document.querySelectorAll('.faq-trigger').forEach(trigger => {
+            trigger.addEventListener('click', () => {
+                trigger.closest('.faq-item').classList.toggle('active');
+            });
+        });
+
+        // Web3Forms submission
+        function bindForm(formId, statusId, successMsg) {
+            const f = document.getElementById(formId);
+            const s = document.getElementById(statusId);
+            if (!f || !s) return;
+            f.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                s.classList.remove('hidden');
+                s.className = 'text-center text-sm font-medium text-stone-600';
+                s.textContent = 'שולח פנייה...';
+                try {
+                    const res = await fetch(f.action, {
+                        method: 'POST',
+                        body: new FormData(f),
+                        headers: { 'Accept': 'application/json' }
+                    });
+                    const data = await res.json();
+                    if (data.success) {
+                        s.className = 'text-center text-sm font-bold text-emerald-700';
+                        s.textContent = successMsg;
+                        f.reset();
+                    } else {
+                        throw new Error(data.message || 'שגיאה');
+                    }
+                } catch {
+                    s.className = 'text-center text-sm font-medium text-amber-700';
+                    s.textContent = 'אירעה תקלה בשליחה – ניתן לפנות ישירות ל-054-5800802 או shmulikdge@gmail.com.';
+                }
+            });
+        }
+
+        bindForm('contact-form', 'form-status', 'הפנייה נשלחה בהצלחה! אחזור אליך בהקדם.');
+        bindForm('ws-form', 'ws-status', 'הפרטים נשלחו בהצלחה! צורית תחזור אליך בהקדם.');
+    </script>
 </body>
 </html>
